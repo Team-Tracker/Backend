@@ -13,6 +13,8 @@ public class Message {
 
     private Integer user_id;
 
+    private Integer chat_id;
+
     private String text;
 
     public Integer getId() {

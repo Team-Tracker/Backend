@@ -2,7 +2,6 @@ package com.example.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.models.Chat;
 import com.example.models.Message;
-import com.example.models.User;
 import com.example.repositories.ChatRepository;
 import com.example.repositories.MessageRepository;
 import com.example.repositories.UserRepository;
@@ -21,6 +19,7 @@ import java.util.ArrayList;
 @Controller
 @RequestMapping(path = "/")
 public class MainController {
+    
     @Autowired
     private UserRepository userRepository;
 
@@ -38,13 +37,6 @@ public class MainController {
         message.setText(text);
 
         messageRepository.save(message);
-
-        Chat chat = new Chat();
-
-        chat.setUser_id(dst_id);
-        chat.setMessage_id(message.getId());
-
-        chatRepository.save(chat);
 
         return "Sent";
     }
@@ -71,9 +63,8 @@ public class MainController {
             
         }
 
-        Iterable<Message> messages = messageRepository.findByMessage_id();
+        //Iterable<Message> messages = messageRepository.findByMessage_id();
 
         return messages;
-
     }
 }
