@@ -20,17 +20,17 @@ public class UserController {
 
     @PostMapping(path = "/add")
     public @ResponseBody String addNewUser(@RequestParam String name, @RequestParam String password) {
-        User n = new User();
-        n.setName(name);
-        n.setPassword(password);
-        userRepository.save(n);
-        return "Added";
+        User user = new User();
+        user.setName(name);
+        user.setPassword(password);
+        userRepository.save(user);
+        return user.getId().toString();
     }
 
     @DeleteMapping(path = "/delete")
     public @ResponseBody String deleteUser(@RequestParam Integer id) {
         userRepository.deleteById(id);
-        return "Deleted";
+        return id.toString();
     }
 
     @GetMapping(path = "/all")

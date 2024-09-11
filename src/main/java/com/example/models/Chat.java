@@ -12,7 +12,6 @@ public class Chat {
     private Integer id;
 
     private Integer user_id;
-    private Integer message_id;
 
     public Integer getId() {
         return id;
@@ -28,13 +27,5 @@ public class Chat {
 
     public void setUser_id(Integer user_id) {
         this.user_id = user_id;
-    }
-
-    public Integer getMessage_id() {
-        return message_id;
-    }
-
-    public void setMessage_id(Integer message_id) {
-        this.message_id = message_id;
     }
 }

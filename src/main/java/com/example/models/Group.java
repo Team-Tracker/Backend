@@ -7,11 +7,14 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Group {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private Integer user_id;
+    private Integer chat_id;
+
+    private String name;
 
     public Integer getId() {
         return id;
@@ -21,11 +24,19 @@ public class Group {
         this.id = id;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getChat_id() {
+        return chat_id;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setChat_id(Integer chat_id) {
+        this.chat_id = chat_id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -12,33 +12,28 @@ import com.example.models.Chat;
 import com.example.models.Message;
 import com.example.repositories.ChatRepository;
 import com.example.repositories.MessageRepository;
-import com.example.repositories.UserRepository;
 
 import java.util.ArrayList;
 
-@Controller
 @RequestMapping(path = "/")
 public class MainController {
-    
-    @Autowired
-    private UserRepository userRepository;
 
-    @Autowired
     private ChatRepository chatRepository;
 
-    @Autowired
     private MessageRepository messageRepository;
 
+/*
     @PostMapping(path = "/send")
-    public @ResponseBody String sendMessage(@RequestParam Integer src_id, @RequestParam Integer dst_id,
+    public @ResponseBody String postMessage(@RequestParam Integer user_id, @RequestParam Integer chat_id,
             @RequestParam String text) {
         Message message = new Message();
-        message.setUser_id(src_id);
+        message.setUser_id(user_id);
+        message.setChat_id(chat_id);
         message.setText(text);
 
         messageRepository.save(message);
 
-        return "Sent";
+        return message.getId().toString();
     }
 
     @GetMapping(path = "/all")
@@ -52,19 +47,17 @@ public class MainController {
     }
 
     @GetMapping(path = "/messages")
-    public @ResponseBody Iterable<Message> getMessages(@RequestParam Integer user_id) {
-        // select * from messages where user_id = user_id
-
-        Iterable<Chat> chats = chatRepository.findByUser_id(user_id);
-
+    public @ResponseBody Iterable<Message> getMessages(@RequestParam Integer user_id, @RequestParam Integer chat_id) {
         ArrayList<Message> messages = new ArrayList<Message>();
 
-        for (Chat chat : chats) {
-            
+        for (Message message : messageRepository.findAll()) {
+            if (message.getUser_id() == user_id && message.getChat_id() == chat_id) {
+                messages.add(message);
+            }
         }
-
-        //Iterable<Message> messages = messageRepository.findByMessage_id();
 
         return messages;
     }
+ */
+
 }

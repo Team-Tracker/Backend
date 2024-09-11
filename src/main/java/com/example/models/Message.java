@@ -33,6 +33,14 @@ public class Message {
         this.user_id = user_id;
     }
 
+    public Integer getChat_id() {
+        return chat_id;
+    }
+
+    public void setChat_id(Integer chat_id) {
+        this.chat_id = chat_id;
+    }
+
     public String getText() {
         return text;
     }
