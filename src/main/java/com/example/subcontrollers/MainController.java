@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.configurations.WebSocketConfig.MessageWebSocketHandler;
 import com.example.models.Message;
+import com.example.models.User;
 import com.example.repositories.MessageRepository;
 
 

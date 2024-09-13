@@ -21,20 +21,37 @@ public class UserController {
     @PostMapping(path = "/add")
     public @ResponseBody String addNewUser(@RequestParam String name, @RequestParam String password) {
         User user = new User();
-        user.setName(name);
+        user.setUsername(name);
         user.setPassword(password);
         userRepository.save(user);
+
         return user.getId().toString();
     }
 
     @DeleteMapping(path = "/delete")
     public @ResponseBody String deleteUser(@RequestParam Integer id) {
         userRepository.deleteById(id);
+
         return id.toString();
     }
 
     @GetMapping(path = "/all")
     public @ResponseBody Iterable<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    @GetMapping(path = "/login")
+    public @ResponseBody int login(@RequestParam String username, @RequestParam String password) {
+        Iterable<User> users = userRepository.findByName(username);
+
+        // ! Password should be hashed
+        // Loop not necessary because name is unique
+        for (User user : users) {
+            if (user.getPassword().equals(password)) {
+                return user.getId();
+            }
+        }
+
+        return -1;
     }
 }

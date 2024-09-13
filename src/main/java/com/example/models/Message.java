@@ -16,6 +16,8 @@ public class Message {
     private Integer chat_id;
 
     private String text;
+    
+    private String timestamp;
 
     public Integer getId() {
         return id;
@@ -47,5 +49,13 @@ public class Message {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 }

@@ -1,7 +1,6 @@
 package com.example.configurations;
 
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
-// Import necessary WebSocket classes
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
@@ -20,26 +19,27 @@ public class WebSocketConfig implements WebSocketConfigurer {
     public void registerWebSocketHandlers(@SuppressWarnings("null") WebSocketHandlerRegistry registry) {
         registry.addHandler(new MessageWebSocketHandler(), "/ws/messages").setAllowedOrigins("*");
     }
- public class MessageWebSocketHandler extends TextWebSocketHandler {
-    private List<WebSocketSession> sessions = new CopyOnWriteArrayList<>();
 
-    @Override
-    public void afterConnectionEstablished(@SuppressWarnings("null") WebSocketSession session) throws Exception {
-        sessions.add(session);
-    }
+    public class MessageWebSocketHandler extends TextWebSocketHandler {
+        private List<WebSocketSession> sessions = new CopyOnWriteArrayList<>();
 
-    @Override
-    public void afterConnectionClosed(@SuppressWarnings("null") WebSocketSession session,
-            @SuppressWarnings("null") CloseStatus status) throws Exception {
-        sessions.remove(session);
-    }
+        @Override
+        public void afterConnectionEstablished(@SuppressWarnings("null") WebSocketSession session) throws Exception {
+            sessions.add(session);
+        }
 
-    public void broadcastMessage(String message) throws Exception {
-        for (WebSocketSession session : sessions) {
-            if (session.isOpen()) {
-                session.sendMessage(new TextMessage(message));
+        @Override
+        public void afterConnectionClosed(@SuppressWarnings("null") WebSocketSession session,
+                @SuppressWarnings("null") CloseStatus status) throws Exception {
+            sessions.remove(session);
+        }
+
+        public void broadcastMessage(String message) throws Exception {
+            for (WebSocketSession session : sessions) {
+                if (session.isOpen()) {
+                    session.sendMessage(new TextMessage(message));
+                }
             }
         }
     }
-}
 }

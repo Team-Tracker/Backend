@@ -7,6 +7,6 @@ import com.example.models.Message;
 
 public interface MessageRepository extends CrudRepository<Message, Integer> {
 
-    @Query(value = "SELECT * FROM messages WHERE id = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM message WHERE id = ?1", nativeQuery = true)
     Iterable<Message> findByMessage_id(Integer message_id);
 }
