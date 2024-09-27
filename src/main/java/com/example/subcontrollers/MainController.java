@@ -7,27 +7,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.configurations.WebSocketConfig.MessageWebSocketHandler;
 import com.example.models.Message;
-import com.example.models.User;
 import com.example.repositories.MessageRepository;
-
-
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class MainController {
-    private MessageWebSocketHandler messageWebSocketHandler;
+
+    @Autowired
+    private MessageWebSocketHandler messageWebSocketHandler;  // Autowire the WebSocket handler
 
     @Autowired
     private MessageRepository messageRepository;
 
     @PostMapping(path = "/send")
     public @ResponseBody String postMessage(@RequestParam Integer user_id, @RequestParam Integer chat_id,
-            @RequestParam String text) throws Exception {
+                                            @RequestParam String text) throws Exception {
         Message message = new Message();
         message.setUser_id(user_id);
         message.setChat_id(chat_id);
         message.setText(text);
-
         messageRepository.save(message);
 
         messageWebSocketHandler.broadcastMessage(text);
