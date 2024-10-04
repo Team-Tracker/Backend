@@ -5,6 +5,10 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+import com.example.Application;
+import com.example.models.Message;
+
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.CloseStatus;
@@ -43,10 +47,12 @@ public class WebSocketConfig implements WebSocketConfigurer {
             sessions.remove(session);
         }
 
-        public void broadcastMessage(String message) throws Exception {
+        public void broadcastMessage(Message message) throws Exception {
+            String jsonMessage = Application.GSON.toJson(message);
+        
             for (WebSocketSession session : sessions) {
                 if (session.isOpen()) {
-                    session.sendMessage(new TextMessage(message));
+                    session.sendMessage(new TextMessage(jsonMessage));
                 }
             }
         }

@@ -28,7 +28,7 @@ public class MainController {
         message.setText(text);
         messageRepository.save(message);
 
-        messageWebSocketHandler.broadcastMessage(text);
+        messageWebSocketHandler.broadcastMessage(message);
 
         return message.getId().toString();
     }
