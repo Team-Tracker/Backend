@@ -49,7 +49,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
         public void broadcastMessage(Message message) throws Exception {
             String jsonMessage = Application.GSON.toJson(message);
-        
+
             for (WebSocketSession session : sessions) {
                 if (session.isOpen()) {
                     session.sendMessage(new TextMessage(jsonMessage));
