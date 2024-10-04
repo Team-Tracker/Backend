@@ -7,6 +7,6 @@ import com.example.models.User;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
 
-    @Query(value = "SELECT * FROM user WHERE name = ?1", nativeQuery = true)
-    Iterable<User> findByName(String name);
+    @Query(value = "SELECT * FROM user WHERE username = ?1", nativeQuery = true)
+    Iterable<User> findByUsername(String username);
 }

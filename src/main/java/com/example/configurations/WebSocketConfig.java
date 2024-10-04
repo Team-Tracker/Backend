@@ -18,15 +18,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
 
-    // Register WebSocket handler
     @Override
-    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+    public void registerWebSocketHandlers(@SuppressWarnings("null") WebSocketHandlerRegistry registry) {
         registry.addHandler(messageWebSocketHandler(), "/ws/messages").setAllowedOrigins("*");
     }
 
-    // Make the WebSocketHandler a Spring bean
     @Bean
-    public MessageWebSocketHandler messageWebSocketHandler() {
+    MessageWebSocketHandler messageWebSocketHandler() {
         return new MessageWebSocketHandler();
     }
 
@@ -35,12 +33,13 @@ public class WebSocketConfig implements WebSocketConfigurer {
         private List<WebSocketSession> sessions = new CopyOnWriteArrayList<>();
 
         @Override
-        public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+        public void afterConnectionEstablished(@SuppressWarnings("null") WebSocketSession session) throws Exception {
             sessions.add(session);
         }
 
         @Override
-        public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+        public void afterConnectionClosed(@SuppressWarnings("null") WebSocketSession session,
+                @SuppressWarnings("null") CloseStatus status) throws Exception {
             sessions.remove(session);
         }
 

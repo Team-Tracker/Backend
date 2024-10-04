@@ -42,7 +42,7 @@ public class UserController {
 
     @GetMapping(path = "/login")
     public @ResponseBody int login(@RequestParam String username, @RequestParam String password) {
-        Iterable<User> users = userRepository.findByName(username);
+        Iterable<User> users = userRepository.findByUsername(username);
 
         // ! Password should be hashed
         // Loop not necessary because name is unique
