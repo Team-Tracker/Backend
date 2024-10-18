@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Assignee {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;

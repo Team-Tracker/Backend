@@ -10,6 +10,6 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     @Query(value = "SELECT * FROM user WHERE username = ?1", nativeQuery = true)
     Iterable<User> findByUsername(String username);
 
-    @Query(value = "SELECT username FROM user WHERE user_id = ?1", nativeQuery = true)
-    Iterable<User> resolveUsername(int user_id);
+    @Query(value = "SELECT username FROM user WHERE id = ?1", nativeQuery = true)
+    Iterable<String> resolveUsername(Integer id);
 }

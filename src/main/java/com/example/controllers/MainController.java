@@ -1,26 +1,11 @@
 package com.example.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.example.models.Chat;
-import com.example.models.Message;
-import com.example.repositories.ChatRepository;
-import com.example.repositories.MessageRepository;
-
-import java.util.ArrayList;
-
-@RequestMapping(path = "/")
+// @RequestMapping(path = "/")
 public class MainController {
 
-    private ChatRepository chatRepository;
+    // private ChatRepository chatRepository;
 
-    private MessageRepository messageRepository;
+    // private MessageRepository messageRepository;
 
     /*
      * @PostMapping(path = "/send")
@@ -62,5 +47,4 @@ public class MainController {
      * return messages;
      * }
      */
-
 }

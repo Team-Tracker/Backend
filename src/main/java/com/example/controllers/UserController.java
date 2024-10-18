@@ -15,6 +15,7 @@ import com.example.repositories.UserRepository;
 @Controller
 @RequestMapping(path = "/user")
 public class UserController {
+    
     @Autowired
     private UserRepository userRepository;
 

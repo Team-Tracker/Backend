@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Message {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -16,7 +17,7 @@ public class Message {
     private Integer chat_id;
 
     private String text;
-    
+
     private String timestamp;
 
     public Integer getId() {
