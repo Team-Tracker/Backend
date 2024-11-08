@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Sprint {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
