@@ -1,4 +1,4 @@
-package com.example.configurations;
+package com.example.sockets;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
@@ -20,7 +20,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 @Configuration
 @EnableWebSocket
-public class WebSocketConfig implements WebSocketConfigurer {
+public class WebSocket implements WebSocketConfigurer {
 
     @Override
     public void registerWebSocketHandlers(@SuppressWarnings("null") WebSocketHandlerRegistry registry) {

@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.configurations.WebSocketConfig.MessageWebSocketHandler;
 import com.example.models.Chat;
 import com.example.models.Message;
 import com.example.repositories.ChatRepository;
 import com.example.repositories.MessageRepository;
+import com.example.sockets.WebSocket.MessageWebSocketHandler;
 
 public class ChatController {
 
