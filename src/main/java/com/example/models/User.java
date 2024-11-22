@@ -1,5 +1,6 @@
 package com.example.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +16,7 @@ public class User {
 
     // Account information (unique, required, for login)
     // firstName.lastName is a better choice for unique identifier
+    @Column(unique = true)
     private String username;
 
     // Personal information
