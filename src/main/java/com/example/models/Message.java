@@ -8,16 +8,31 @@ import jakarta.persistence.Id;
 @Entity
 public class Message {
 
+    /**
+     * Primary key
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    /**
+     * The user who sent the message
+     */
     private Integer user_id;
 
+    /**
+     * The chat the message belongs to
+     */
     private Integer chat_id;
 
+    /**
+     * The message text
+     */
     private String text;
 
+    /**
+     * The timestamp of the message
+     */
     private String timestamp;
 
     public Integer getId() {

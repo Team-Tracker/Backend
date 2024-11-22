@@ -48,10 +48,12 @@ public class UserController {
      */
     @GetMapping(path = "/resolveUsername")
     public @ResponseBody String getUsername(@RequestParam Integer id) {
-        Iterable<String> usernames = userRepository.resolveUsername(id);
-        if (!usernames.iterator().hasNext()) {
+        String username = userRepository.resolveUsername(id);
+
+        if (username == null) {
             return null;
         }
-        return usernames.iterator().next();
+
+        return username;
     }
 }
