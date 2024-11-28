@@ -1,5 +1,6 @@
 package com.example.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import java.util.Optional;
 @RequestMapping(path = "/main")
 public class MainController {
 
+    @Autowired
     private UserRepository userRepository;
 
     /**
