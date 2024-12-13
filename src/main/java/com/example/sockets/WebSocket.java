@@ -12,6 +12,7 @@ import com.example.models.User;
 
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.stereotype.Component;
@@ -25,17 +26,18 @@ public class WebSocket implements WebSocketConfigurer {
 
     @Override
     public void registerWebSocketHandlers(@SuppressWarnings("null") WebSocketHandlerRegistry registry) {
-        registry.addHandler(messageWebSocketHandler(), "/ws/messages").setAllowedOrigins("*");
+        registry.addHandler(webSocketHandler(), "/ws").setAllowedOrigins("*");
     }
 
+    @Primary
     @Bean
-    MessageWebSocketHandler messageWebSocketHandler() {
-        return new MessageWebSocketHandler();
+    WebSocketHandler webSocketHandler() {
+        return new WebSocketHandler();
     }
 
     @Component
-    public static class MessageWebSocketHandler extends TextWebSocketHandler {
-        
+    public static class WebSocketHandler extends TextWebSocketHandler {
+
         /**
          * The list of active WebSocket sessions.
          */
@@ -90,9 +92,10 @@ public class WebSocket implements WebSocketConfigurer {
                     if (session.getAttributes().containsKey("user")) {
                         User user = (User) session.getAttributes().get("user");
 
+
+
                         session.sendMessage(new TextMessage(jsonMessage));
                     }
-
                 }
             }
         }

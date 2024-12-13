@@ -12,14 +12,14 @@ import com.example.models.Chat;
 import com.example.models.Message;
 import com.example.repositories.ChatRepository;
 import com.example.repositories.MessageRepository;
-import com.example.sockets.WebSocket.MessageWebSocketHandler;
+import com.example.sockets.WebSocket.WebSocketHandler;
 
 @Controller
 @RequestMapping(path = "/chat")
 public class ChatController {
 
     @Autowired
-    private MessageWebSocketHandler messageWebSocketHandler;
+    private WebSocketHandler messageWebSocketHandler;
 
     @Autowired
     private MessageRepository messageRepository;

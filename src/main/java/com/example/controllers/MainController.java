@@ -43,15 +43,15 @@ public class MainController {
     /**
      * Add a user to the database (with a hashed password).
      * 
-     * @param username          the username of the user
-     * @param encryptedPassword the hashed password of the user
+     * @param username       the username of the user
+     * @param hashedPassword the hashed password of the user
      * @return the ID of the newly created user
      */
     @PostMapping(path = "/add")
-    public @ResponseBody String addUser(@RequestParam String username, @RequestParam String encryptedPassword) {
+    public @ResponseBody String addUser(@RequestParam String username, @RequestParam String hashedPassword) {
         User user = new User();
         user.setUsername(username);
-        user.setPassword(encryptedPassword);
+        user.setPassword(hashedPassword);
         userRepository.save(user);
         return user.getId().toString();
     }
@@ -77,16 +77,16 @@ public class MainController {
     /**
      * Change the password of a user in the database (with a hashed password).
      * 
-     * @param id                the ID of the user
-     * @param encryptedPassword the new hashed password of the user
+     * @param id             the ID of the user
+     * @param hashedPassword the new hashed password of the user
      * @return the ID of the user whose password was changed
      */
     @PatchMapping(path = "/password")
-    public @ResponseBody String changePassword(@RequestParam Integer id, @RequestParam String encryptedPassword) {
+    public @ResponseBody String changePassword(@RequestParam Integer id, @RequestParam String hashedPassword) {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            user.setPassword(encryptedPassword);
+            user.setPassword(hashedPassword);
             userRepository.save(user);
             return user.getId().toString();
         } else {

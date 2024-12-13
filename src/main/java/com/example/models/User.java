@@ -28,7 +28,6 @@ public class User {
     private String phone;
 
     // Password information
-    // Hashed password is a better choice
     private String password;
 
     public Integer getId() {
