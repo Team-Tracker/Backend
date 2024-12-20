@@ -33,6 +33,10 @@ public class MainController {
     public @ResponseBody int login(@RequestParam String username, @RequestParam String password) {
         User user = userRepository.findByUsername(username);
 
+        if (user == null) {
+            return -1;
+        }
+
         if (BCrypt.checkpw(password, user.getPassword())) {
             return user.getId();
         }
@@ -50,9 +54,12 @@ public class MainController {
     @PostMapping(path = "/add")
     public @ResponseBody String addUser(@RequestParam String username, @RequestParam String hashedPassword) {
         User user = new User();
+
         user.setUsername(username);
         user.setPassword(hashedPassword);
+
         userRepository.save(user);
+
         return user.getId().toString();
     }
 

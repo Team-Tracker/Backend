@@ -1,30 +1,49 @@
 package com.example.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-import com.example.models.Chat;
-import com.example.models.Message;
+import com.example.models.Member;
 import com.example.models.Team;
-import com.example.repositories.ChatRepository;
-import com.example.repositories.MessageRepository;
-import com.example.repositories.TeamRepository;
-import com.example.sockets.WebSocket.WebSocketHandler;
+import com.example.services.TeamService;
 
-@Controller
-@RequestMapping(path = "/team")
+import java.util.List;
+
+@RestController
+@RequestMapping("/team")
 public class TeamController {
+    private final TeamService teamService;
 
-    @Autowired
-    private TeamRepository teamRepository;
+    public TeamController(TeamService teamService) {
+        this.teamService = teamService;
+    }
 
-    @GetMapping(path = "/my")
-    public @ResponseBody Iterable<Team> getTeams(@RequestParam Integer user_id) {
-        return this.teamRepository.findByUser_id(user_id);
+    @GetMapping
+    public List<Team> getAllTeams() {
+        return teamService.getAllTeams();
+    }
+
+    @GetMapping("/{id}")
+    public Team getTeamById(@PathVariable Long id) {
+        return teamService.getTeamById(id).orElseThrow(() -> new IllegalArgumentException("Team not found"));
+    }
+
+    @PostMapping
+    public Team createTeam(@RequestBody Team team) {
+        return teamService.createTeam(team);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteTeam(@PathVariable Long id) {
+        teamService.deleteTeam(id);
+    }
+
+    @PostMapping("/{teamId}/members")
+    public Member addMemberToTeam(@PathVariable Long teamId, @RequestBody Member member) {
+        return teamService.addMemberToTeam(teamId, member);
+    }
+
+    @DeleteMapping("/{teamId}/members/{memberId}")
+    public void removeMemberFromTeam(@PathVariable Long teamId, @PathVariable Long memberId) {
+        teamService.removeMemberFromTeam(teamId, memberId);
     }
 }

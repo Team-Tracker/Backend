@@ -92,8 +92,6 @@ public class WebSocket implements WebSocketConfigurer {
                     if (session.getAttributes().containsKey("user")) {
                         User user = (User) session.getAttributes().get("user");
 
-
-
                         session.sendMessage(new TextMessage(jsonMessage));
                     }
                 }
