@@ -44,7 +44,7 @@ public class ChatController {
         Message message = new Message();
 
         message.setUser_id(user_id);
-        message.setChat_id(chat_id);
+        message.setChatGroupId(chat_id);
         message.setText(text);
         
         messageRepository.save(message);
