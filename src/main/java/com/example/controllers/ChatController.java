@@ -38,6 +38,13 @@ public class ChatController {
     @Autowired
     private ChatRepository chatRepository;
 
+    @PostMapping(path = "/register")
+    public @ResponseBody Integer register(@RequestParam Integer userId, @RequestParam Integer sessionId) throws Exception {
+        messageWebSocketHandler.registerUser(userId, sessionId);
+
+        return sessionId;
+    }
+
     @PostMapping(path = "/send")
     public @ResponseBody String postMessage(@RequestParam Integer user_id, @RequestParam Integer chat_id,
             @RequestParam String text) throws Exception {

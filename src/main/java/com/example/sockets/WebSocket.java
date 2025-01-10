@@ -1,5 +1,6 @@
 package com.example.sockets;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
@@ -9,6 +10,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import com.example.Application;
 import com.example.models.Message;
 import com.example.models.User;
+import com.example.repositories.ChatRepository;
 
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.context.annotation.Configuration;
@@ -43,6 +45,9 @@ public class WebSocket implements WebSocketConfigurer {
          */
         private List<WebSocketSession> sessions = new CopyOnWriteArrayList<>();
 
+        @Autowired
+        private ChatRepository chatRepository;
+
         /**
          * Add the WebSocket session to the list of active sessions.
          */
@@ -71,10 +76,10 @@ public class WebSocket implements WebSocketConfigurer {
         /**
          * Register a user with the WebSocket session.
          * 
-         * @param user the user to register
+         * @param userId the ID of the user
          */
-        public void registerUser(User user) {
-            sessions.get(0).getAttributes().put("user", user);
+        public void registerUser(Integer userId, Integer sessionId) {
+            sessions.get(sessionId).getAttributes().put("user", userId);
         }
 
         /**
@@ -90,9 +95,17 @@ public class WebSocket implements WebSocketConfigurer {
                 if (session.isOpen()) {
 
                     if (session.getAttributes().containsKey("user")) {
-                        User user = (User) session.getAttributes().get("user");
+                        Integer userId = (Integer) session.getAttributes().get("user");
 
-                        session.sendMessage(new TextMessage(jsonMessage));
+                        chatRepository.findByUserId(userId).forEach(chat -> {
+                            if (chat.getChatGroupId().equals(message.getChatGroupId())) {
+                                try {
+                                    session.sendMessage(new TextMessage(jsonMessage));
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
                     }
                 }
             }
