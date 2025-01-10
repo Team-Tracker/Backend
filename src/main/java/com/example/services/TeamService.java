@@ -45,7 +45,8 @@ public class TeamService {
     }
 
     public void removeMemberFromTeam(Long teamId, Long memberId) {
-        Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException("Member not found"));
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new IllegalArgumentException("Member not found"));
         Team team = teamRepository.findById(teamId).orElseThrow(() -> new IllegalArgumentException("Team not found"));
         team.removeMember(member);
         memberRepository.delete(member);
