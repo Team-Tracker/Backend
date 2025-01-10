@@ -19,31 +19,31 @@ public class TeamController {
 
     @GetMapping
     public List<Team> getAllTeams() {
-        return teamService.getAllTeams();
+        return this.teamService.getAllTeams();
     }
 
     @GetMapping("/{id}")
     public Team getTeamById(@PathVariable Long id) {
-        return teamService.getTeamById(id).orElseThrow(() -> new IllegalArgumentException("Team not found"));
+        return this.teamService.getTeamById(id).orElseThrow(() -> new IllegalArgumentException("Team not found"));
     }
 
     @PostMapping
     public Team createTeam(@RequestBody Team team) {
-        return teamService.createTeam(team);
+        return this.teamService.createTeam(team);
     }
 
     @DeleteMapping("/{id}")
     public void deleteTeam(@PathVariable Long id) {
-        teamService.deleteTeam(id);
+        this.teamService.deleteTeam(id);
     }
 
     @PostMapping("/{teamId}/members")
     public Member addMemberToTeam(@PathVariable Long teamId, @RequestBody Member member) {
-        return teamService.addMemberToTeam(teamId, member);
+        return this.teamService.addMemberToTeam(teamId, member);
     }
 
     @DeleteMapping("/{teamId}/members/{memberId}")
     public void removeMemberFromTeam(@PathVariable Long teamId, @PathVariable Long memberId) {
-        teamService.removeMemberFromTeam(teamId, memberId);
+        this.teamService.removeMemberFromTeam(teamId, memberId);
     }
 }

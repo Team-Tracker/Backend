@@ -12,7 +12,7 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private Integer sprint_id;
+    private Integer sprintId;
 
     public Integer getId() {
         return id;
@@ -22,11 +22,11 @@ public class Board {
         this.id = id;
     }
 
-    public Integer getSprint_id() {
-        return sprint_id;
+    public Integer getSprintId() {
+        return sprintId;
     }
 
-    public void setSprint_id(Integer sprint_id) {
-        this.sprint_id = sprint_id;
+    public void setSprintId(Integer sprintId) {
+        this.sprintId = sprintId;
     }
 }

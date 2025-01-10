@@ -12,9 +12,9 @@ public class Assignee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private Integer user_id;
+    private Integer userId;
 
-    private Integer task_id;
+    private Integer taskId;
 
     public Integer getId() {
         return id;
@@ -24,19 +24,19 @@ public class Assignee {
         this.id = id;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public Integer getTask_id() {
-        return task_id;
+    public Integer getTaskId() {
+        return taskId;
     }
 
-    public void setTask_id(Integer task_id) {
-        this.task_id = task_id;
+    public void setTaskId(Integer taskId) {
+        this.taskId = taskId;
     }
 }

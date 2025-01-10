@@ -1,0 +1,48 @@
+\definecolor{commentgreen}{RGB}{10,126,18}
+\lstdefinestyle{bashStyle}{
+	language     = bash,
+	showstringspaces=false,
+	frame=single,
+	rulecolor=\color{black},
+	inputencoding=utf8,
+	basicstyle   = \footnotesize\ttfamily,
+	keywordstyle = \color{blue},
+	commentstyle = \color{commentgreen},
+	stringstyle  = \color{orange},
+	tabsize      = 4,
+	captionpos   = b,
+	breaklines=true,
+	numbers=left,
+	backgroundcolor=\color{gray!10!white},
+	literate=
+		{Ö}{{\"O}}1
+		{Ä}{{\"A}}1
+		{Ü}{{\"U}}1
+		{ß}{{\ss}}1
+		{ü}{{\"u}}1
+		{ä}{{\"a}}1
+		{ö}{{\"o}}1
+}
+
+
+\lstdefinelanguage{kotlin}{
+	morekeywords={fun, interface, data, class, val, return, enum, var},
+	morecomment=[s]{/**}{*/}
+	%morestring=[b]"
+}
+\lstdefinestyle{kotlinStyle}{
+	language     = kotlin,
+	showstringspaces=false,
+	frame=single,
+	rulecolor=\color{black},
+	inputencoding=utf8,
+	basicstyle   = \footnotesize\ttfamily,
+	keywordstyle = \color{blue},
+	commentstyle = \color{commentgreen},
+	stringstyle  = \color{orange},
+	tabsize      = 4,
+	captionpos   = b,
+	breaklines=true,
+	numbers=left,
+	backgroundcolor=\color{gray!10!white}
+}

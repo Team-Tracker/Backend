@@ -30,7 +30,7 @@ public class MainController {
      * @return the ID of the user if login is successful, -1 otherwise
      */
     @GetMapping(path = "/login")
-    public @ResponseBody int login(@RequestParam String username, @RequestParam String password) {
+    public @ResponseBody Integer login(@RequestParam String username, @RequestParam String password) {
         User user = userRepository.findByUsername(username);
 
         if (user == null) {

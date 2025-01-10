@@ -23,7 +23,7 @@ public class Message {
     /**
      * The chat the message belongs to
      */
-    private Integer chat_id;
+    private Integer chatGroupId;
 
     /**
      * The message text

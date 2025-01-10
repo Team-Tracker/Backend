@@ -1,0 +1,55 @@
+Ordnung Überschriften:
+\chapter{title}
+\section{title}
+\subsection{title}
+\subsubsection{title}           ... Wird nicht mehr im Inhaltsverzeichnis angezeigt
+
+
+Text ganz normal schreiben.
+
+
+Bilder:
+\begin{figure}[h]
+	\includegraphics{Dateiname.dateiendung}         ... Zum Einbinden des Bildes selber muss immer im './img/' Ordner liegen
+	\caption{Abbildungsbeschriftung}                ... Für das Abbildungsverzeichnis wird automatisch generiert
+	\label{Name_der_Abbildung}                      ... optional falls man im Text darüber/darunter auf das Bild verweisen will kann man \ref{Name_der_Abbildung} verwenden
+\end{figure}
+
+Code:
+
+
+Aufzählungen mit nummer:
+\begin{enumerate}
+	\item Franzi
+	\item Peppi
+	\item Ferdl
+\end{enumerate}	
+
+
+Aufzählung mit punkt:
+\begin{itemize}
+	\item Franzi
+	\item Peppi
+	\item Ferdl
+\end{itemize}
+
+
+Beginnen einer neuen Zeile (einmal Enter drücken):
+\\
+Bsp.:
+Text in der Zeile \\
+
+
+Leere Zeile einfügen:
+~ \\
+
+
+Neue Seite erzwingen: 
+\newpage
+
+
+Wenn Latex etwas schon auf die nächste Seite geben will man es aber noch auf der vorherigen haben will:
+\enlargethispage
+Dein Text hier...
+\newpage
+

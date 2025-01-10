@@ -1,0 +1,171 @@
+\chapter{Kurze Einf"uhrung in \LaTeX}
+    F"ur die Diplomarbeit bitte dieses Kapitel im Masterdokument
+    einfach auskommentieren (\%~davor).
+
+	\LaTeX{} ist eine sehr leistungsf"ahige Software zum Verfassen wissenschaftlicher Arbeiten.
+
+	Wichtige \LaTeX{}-Infos findet man in \cite{l2kurz}.
+
+	\section{Gliederung (ich bin eine "Uberschrift -- section)}
+	Ein neues Kapitel beginnt mit dem \verb|\chapter {Kapitelname}|-Befehl, z.\,B. die Kapitelüberschrift auf dieser Seite (Kurze Einführung \dots).
+
+	Weitere Gliederungen sind:\\
+	\verb|\section{Titel}|, \verb|\subsection{Titel}|,
+	\verb|\subsubsection{Titel}|
+
+	Das sieht dann so aus:
+
+
+	\subsection{Ich bin eine Unter"uberschrift -- subsection}
+
+		\subsubsection{Ich bin eine Unterunter"uberschrift -- subsubsection}
+
+		Ein Inhaltsverzeichnis wird mit \verb|\tableofcontents| eingef"ugt und ber"ucksichtigt alle Kapitel, "Uberschriften, Unter"uberschriften usw.
+
+	\subsection{Aufz"ahlungen}
+		Aufz"ahlungen k"onnen ohne Nummern nur mit Bullets ausgef"uhrt sein, das macht man mit \verb|\itemize|. In eckigen Klammern nach \verb|\item| kann man statt der Bullets alternative Symbole verwenden:
+
+		\begin{itemize}
+			\item Franzi
+			\item[\smiley] Peppi
+			\item[\frownie] Ferdl
+		\end{itemize}
+
+
+
+
+
+		 Soll die Aufz"ahlung auch nummeriert sein, erfolgt das mit \verb|enumerate|.
+
+		\begin{enumerate}
+			\item Franzi  \newline
+			      Lois
+			\item Peppi
+			\item Ferdl
+		\end{enumerate}
+
+		\pagebreak
+		\subsection{Tabellen}
+		Tabellen sind ein Bischen haarig\dots
+
+		Hier bitte \cite{l2kurz} durchlesen und oder deb Tabellenasistenten bei \TeX Studio verwenden.
+
+
+		\subsection{Dies und das}
+		Ein Leerzeichen das nie umgebrochen wird, macht man mit einer Tilde \verb|~|, also z.\,B. \verb|auf S.~\pageref{fig:HTL_Logo_neu}|. Da sieht man auch gleich, wie man auf eine Seitennummer verweist.
+
+		Ein Zeilenumbruch erfolgt mit \verb|\\| oder \verb|\newline|. \verb|\newline| geht immer, \verb|\\| fast immer.
+
+		Eine Zeile im Quelltext zwischen zwei Zeilen macht einen neuen Absatz.
+
+		Ein Seitenumbruch erfolgt mit \verb|\pagebreak|.
+
+		Will man auf einer Seite doch noch was unterbringen was \LaTeX aber schon auf die n"achste Seite bringen will, kann man die aktuelle Seite  mit \verb|\enlargethispage| vergr"o"sern. Danach hat sich ein manueller Seitenumbruch bew\"ahrt.
+
+		Wenn man ein Literaturzitat einfügen will, erfolgt das mit dem \verb|\cite|-Befehl.	Dazu muss man im  File \verb|literaturverzeichnis.tex| der Vorlage entsprechend das Zitat einf"ugen. Man kann das mit der freien Software \verb|JabRef| oder mit der Webapplikation \verb|Mendeley| auch professioneller l"osen.
+
+
+
+		\section{Abbildungen}
+		\label{kap:abbildungen}
+		Eine Graphik setzt sich aus zwei Teilen zusammen:
+
+		\begin{itemize}
+			\item Umgebung \verb|figure|\\
+			      Diese stellt Nummer der Abbildung, Bildunterschrift und Referenz f"ur Verweise zur Verf"ugung
+			\item Der eigentlichen Abbildung, meist eingef"ugt mit \verb|\includegraphics| (pdf, png, jpg)
+		\end{itemize}
+
+		Ein Beispiel daf"ur ist Abb.~\ref{fig:HTL_Logo_neu} auf S.~\pageref{fig:HTL_Logo_neu}.
+
+
+
+
+
+
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=70mm]{htlhl_logo.png}
+			%\caption[]{}
+			%\caption{Das neue und unheimlich \fbox{xx zensuriert xx} Schullogo}
+            \caption{Das neue Schullogo \cite{htl_logo}}
+			\label{fig:HTL_Logo_neu}
+		\end{figure}
+
+
+
+
+
+
+		Die Option \verb|[H]| in Kombination mit dem Package float (in der Pr"aambel: \verb|\usepackage{float}|) l"asst die Abbildung genau an der Stelle stehen, wo sie eingef"ugt wurde, das wollen wir so!
+
+		Will man in \LaTeX{} in eine Abbildung was reinschreiben, hilft das Paket \verb|overpic|, in der Pr"aambel muss dann stehen \verb|\usepackage{overpic}|. Erkl"arungen findet man bei Tante Google, das hat sich z.\,B. bei Pfeilen und dergl in Abbildungen bew"ahrt.
+
+
+		\pagebreak
+f		\section{Mathematikmodus}
+
+		Der Winkel~$\alpha$.
+
+		Die Wurstsemmel kostet 20\,\$
+
+		L"angere Gleichungen f"ugt man in einer \verb|equation|~Umgebung ein:
+
+		\begin{equation}
+			\pm\sqrt{a^2 + b^2}=c
+			\label{equ:pythagoras}
+		\end{equation}
+
+		Sie finden den Lehrsatz des alten Griechen in Glg.~\ref{equ:pythagoras} auf S.~\pageref{equ:pythagoras}.
+
+		Will man die Nummer bei der Gleichung nicht, nimmt man die \verb|equation*|~Umgebung:
+
+		\begin{equation*}
+			\tan{\alpha}=\frac{GK}{AK}
+		\end{equation*}
+
+		\subsection{SI-Einheiten}
+			Es gibt zwei leider nicht kompatible Pakete für Einheiten. Das nicht verwendete muss in der Präambel auskommentiert werden. Wir verwenden das neuere Paket \verb|siunitx|
+
+			\subsubsection{siunitx}
+				 Damit Zahl, Abstand, Einheit, Mathematikmodus oder nicht und Schrifttype passen, wird am besten das Paket \verb|siunitx| verwendet.
+
+				 $\SI{2.63}{m/s} $ geschreiben als \verb|$\SI{2.63}{m/s}$|, \\
+				 \SI{2.63}{\meter / \second}  geschrieben als\verb|\SI{2.63}{\meter / \second}|, \\
+				 \SI{2.63}{\meter\per\second} geschrieben als \verb|\SI{2.63}{\meter\per\second}|
+
+				Die Befehle \verb|\metre| statt \verb|m| sind besonders bei zusammengesetzten Einheiten sinnvoll, z.\,B.
+
+				\SI{23}{\micro\metre} geschrieben als   \verb|\SI{23}{\micro\metre}|
+
+				Die Temperatur beträgt \SI{23}{\celsius} geschrieben als   \verb|\SI{23}{\celsius}|
+
+				Der Winkel beträgt \SI{23}{\degree} geschrieben als   \verb|\SI{23}{\degree}|, besser allerdings funktioniert\\
+				Der Winkel beträgt \ang{23,5} geschrieben als   \verb|\ang{23,5}|,\\
+				Der Winkel beträgt \ang{23;30;3} geschrieben als   \verb|\ang{23;30;3}|
+
+
+				Alternativ kann z.\,B. statt \verb|SI{23}{\degree}| auch \verb|\unit{23}{\degree}| geschrieben werden.
+
+				Die Kosten betragen 23,60\,\euro{} geschrieben als \verb|23,60\,\euro{}| hat nichts mit dem \verb|siunitx|-Paket zu tun.
+
+
+
+
+		\pagebreak
+		\section{Literaturverzeichnis}
+			\LaTeX verfügt über eine sehr gute Möglichkeit, Literaturverzeichnisse zu erstellen. Dazu wird ein sogenantes \verb|*.bib|-File angelegt, in dem die verwendete Literatur angeführt wird (es können in diesem File auch nicht verwendete Werke stehen).
+
+			Bekannte Werke kann man z.\,B. mit der der Literatursuchmaschine von Mendeley suchen und mit dem Mendeley Reference Manager (dieses Programm muss am PC installiert werden) in einem  ein \verb|*.bib|-File exportieren.
+
+			Das mit einigen Bespielen schon angelegt File heißt \verb|my_library.bib|.
+
+			Den allgemeinen Aufbau von \verb|*.bib|-Files und kleine Beispiele findet man z.\,B. bei  \cite{wikibook:biber}.
+
+			Viele bunte Bilder zur Technik findet man in \cite{fk_metall}
+
+
+
+
+
+

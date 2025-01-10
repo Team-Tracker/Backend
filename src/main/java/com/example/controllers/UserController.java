@@ -26,7 +26,8 @@ public class UserController {
      */
     @DeleteMapping(path = "/delete")
     public @ResponseBody String deleteUser(@RequestParam Integer id) {
-        userRepository.deleteById(id);
+        this.userRepository.deleteById(id);
+
         return id.toString();
     }
 
@@ -37,7 +38,27 @@ public class UserController {
      */
     @GetMapping(path = "/all")
     public @ResponseBody Iterable<User> getAllUsers() {
-        return userRepository.findAll();
+        return this.userRepository.findAll();
+    }
+
+    /**
+     * Get all users from the database except one.
+     * 
+     * @param id the ID of the user to exclude
+     * @return an iterable of all users except the one with the given ID
+     */
+    @GetMapping(path = "/others")
+    public @ResponseBody Iterable<User> getOtherUsers(@RequestParam Integer id) {
+        Iterable<User> users = this.userRepository.findAll();
+
+        for (User user : users) {
+            if (user.getId() == id) {
+                ((java.util.Collection<User>) users).remove(user);
+                break;
+            }
+        }
+
+        return users;
     }
 
     /**
@@ -48,7 +69,7 @@ public class UserController {
      */
     @GetMapping(path = "/resolveUsername")
     public @ResponseBody String getUsername(@RequestParam Integer id) {
-        String username = userRepository.resolveUsername(id);
+        String username = this.userRepository.resolveUsername(id);
 
         if (username == null) {
             return null;

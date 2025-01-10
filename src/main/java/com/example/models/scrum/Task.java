@@ -16,9 +16,9 @@ public class Task {
 
     private String description;
 
-    private Integer board_id;
+    private Integer boardId;
 
-    private Integer creator_id;
+    private Integer creatorId;
 
     public Integer getId() {
         return id;
@@ -44,19 +44,19 @@ public class Task {
         this.description = description;
     }
 
-    public Integer getBoard_id() {
-        return board_id;
+    public Integer getBoardId() {
+        return boardId;
     }
 
-    public void setBoard_id(Integer board_id) {
-        this.board_id = board_id;
+    public void setBoardId(Integer boardId) {
+        this.boardId = boardId;
     }
 
-    public Integer getCreator_id() {
-        return creator_id;
+    public Integer getCreatorId() {
+        return creatorId;
     }
 
-    public void setCreator_id(Integer creator_id) {
-        this.creator_id = creator_id;
+    public void setCreatorId(Integer creatorId) {
+        this.creatorId = creatorId;
     }
 }

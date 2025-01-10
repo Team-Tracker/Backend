@@ -1,0 +1,208 @@
+\chapter*{\LaTeX Minieinführung}
+	Dieses Kapitel wird natürlich dann nicht in die Arbeit übernommen.
+
+\section{Installation}
+	Wir empfehlen als Editor für das Schreiben \verb"TeXstudio", welches für Windows, Linux und Mac vefügbar ist.
+	
+	In Windows sollte \emph{vorher} MikTeX installiert werden, in Linux \emph{vorher}das Paket TexLive. Bei debianbasierten Systemen (\verb"*buntu",\dots) geht das einfach mit
+	
+	\verb"sudo apt-get install texlive-full"
+	
+	  
+\section{Wichtige Grundfunktionen}
+
+	\subsection{Überschriften, Umbrüche}
+		Überschriften werden mit\\
+		 \verb"\section{Überschriften}" bzw. \verb"\subsection{Unterüberschriften}" bzw.\\ \verb"\subsubsection{Unterunterüberschriften}" eingefügt.
+		
+		Ein neues Kapitel wird mit \verb"\chapter{Kapitelname}" begonnen.
+		
+		Ein Zeilenumbruch wird mit \verb"\newline" oder \verb"\\" erzwungen, das sollte man in der Regel aber \LaTeX{} selber überlassen.
+		
+		Ein neuer Absatz wird um den Wert der Variable \verb"parskip" unter dem vorigen Absatz gesetzt und mit einer leeren Zeile im Editor zwischen den Absätzen erzeugt.
+		
+		Soll mehr Text auf einer Seite Platz finden, als \LaTeX{} das gut findet, kann man \LaTeX{} mit \\
+		\verb"\enlargethispage{20mm}" überreden, z.\,B. 20mm mehr Text auf der Seite zuzulassen.
+		
+		Will man einen Seitenumbruch erzwingen, geht das mit \verb"\pagebreak".
+		
+		Horizontale und vertikale Abstände kann man mit \verb"\vspace{<laenge>}" bzw. \verb"\hspace{<laenge>}" erzeugen.
+
+		
+	\subsection{Aufzählungen}
+		\LaTeX{} kennt drei Aufzählungstypen:
+		\begin{itemize}
+			\item \verb"itemize" (Liste mit Bullets, diese Aufzählung hier)
+			\item \verb"enumerate" (Aufzählung)
+			\item \verb"description" (Beschreibung, sieht nur bei sehr kurzen Begriffen gut aus)
+		\end{itemize}
+		
+		\pagebreak
+		Diese Aufzählung wurde so gestaltet:
+		\begin{verbatim}
+\begin{itemize}
+    \item \verb"itemize" (Liste mit Bullets)
+    \item \verb"enumerate" (Aufzählung)
+    \item \verb"description" (Beschreibung, sieht nur bei sehr kurzen Begriffen gut aus)
+\end{itemize} 		
+		\end{verbatim}
+		
+		\verb"\verb".."" heisst übrigens, dass jedes Zeichen, wie es da steht, in einer Typewriterschrift ausgegeben wird.
+		
+	 \verb"enumerate" funktioniert genauso, nur dass eben \verb"enumerate" statt \verb"itemize" dort steht, bei der \verb"description" sieht es dann etwa so aus:
+		\begin{verbatim}
+\begin{description}
+    \item [LaTeX] sehr gut für Diplomarbeiten geeignet
+    \item [W**d]  nervenaufreibend für Diplomarbeiten
+\end{description} 		
+		\end{verbatim}	  
+		
+	bzw. im kompilierten Dokument:
+	\begin{description}
+	    \item [LaTeX] sehr gut für Diplomarbeiten geeignet
+	    \item [W**d]  nervenaufreibend für Diplomarbeiten
+	\end{description}		
+		
+		
+	\subsection{Diverses}
+		\subsubsection{Bindestrich, Gedankenstrich}
+			Wird oft verwechselt. 
+			Der Bindestrich verbindet Wörter, z.\,B. SPS-Bedienung. In \LaTeX{} wird das ohne Abstände so gesetzt:
+			\verb"SPS-Bedienung".
+			
+			Der Gedankenstrich wird in einem Satz verwendet -- ähnlich einem Beistrich. Gedanken brauchen Raum, also vor und nach dem (doppelten) Gedankenstrich steht ein Abstand.
+			
+			Also: \verb"... verwendet -- ähnlich einem ..."
+			
+		\subsection{Dies und das}
+			Die drei Punkte bei einer Aufzählung werden mit dem befehl \verb"\dots{}" erzeugt, da passt der Abstand deutlich besser, als wenn man einfach drei Punkte macht.
+			
+			\label{kap:tilde}
+			Die Tilde \verb"~" ist ein geschütztes Leerzeichen, also sie bleibt auch am Zeilenanfang bzw. Zeilenende.
+			
+			\verb"\," macht einen kleinen Zwischenraum wie z.\,B. in \verb"z.\,B."
+			
+			Abteilungen können bei ausgefallenen Wörtern falsch sein, dies Wörter sollte man im Masterdokument in die
+			\verb"\hyphenation{}" eintragen, dann werden sie im ganzen Dokument nur mehr so abgeteilt.
+			
+			Das Prozentzeichen wird als Kommentar verwendet. Will man nun aber 56,3\% schreiben, setzt man \verb"56,3\%". Das gleiche gilt für das kaufmännische und, das in Tabellen verwendet wird, hier schreibt man ebenfalls für \& \verb"\&".
+			
+			Für den \euro{} schribt man \verb"\euro{}"
+			
+			\`{A} pro pos, alle vordefiniertern Befehle sollten \verb"{}" am Ende bekommen, sonst passt der Abstand danach nicht, also z.\,B. soll man nicht 56\euro (\verb"56\euro") schreiben sondern \verb"56\euro{}".
+			
+	\section{Formeln}
+		Für mathematische Ausdrücke ist \LaTeX{} die Latte, an der sich andere Software messen muss.
+		
+		\subsection{Mathematische Ausdrücke im Text}
+			Im Text sieht $\sin(2\,\alpha)$ so aus \verb"$\sin(2\,\alpha)$". Das Dollarzeichen beginnt und beendet also den Formelmodus. Im TeXstudio können die einzelnen Formelzeichen einfach geklickt werden.
+			
+			Hochstellungen erfolgen mit \verb"^", Tiefstellungen mit \verb"_", jeweils im Mathematikmodus.
+			
+		\subsection{Gleichungen}
+			Für Herleitungen, Lehrbücher etc. werden gerne Formeln numeriert. Der Satz des Pythagoras wird in (\ref{form:pythagoras1}) bzw. (\ref{form:pythagoras2}) beschrieben. Sie sehen also, dass ein Label bei einer Formel sehr sinnvoll ist.
+			
+			\begin{equation}
+				c^2=a^2 + b^2
+				\label{form:pythagoras1}
+			\end{equation}
+			
+			\begin{equation}
+				c=\pm\sqrt{a^2 + b^2}
+				\label{form:pythagoras2}
+			\end{equation}
+			
+			Im Editor sehen die Formeln so aus:
+\begin{verbatim}
+\begin{equation}
+    c^2=a^2 + b^2
+    \label{form:pythagoras1}
+\end{equation}
+			
+\begin{equation}
+    c=\pm\sqrt{a^2 + b^2}
+    \label{form:pythagoras2}
+\end{equation}
+\end{verbatim}			
+			
+		\subsubsection{Einheiten}
+			Einheiten zu setzen kann sehr mühsam sein. Abhilfe schafft das Package SIUnits, das in der Präambel schon eingefügt ist.
+			
+			Man schreibt also z.\,B. für 7,85\kilogram\per\cubic\meter ~~ \verb"7,85\kilogram\per\cubic\meter"
+			
+			Mehr findet man in der pdf-Dokumentation von SIUnits (eher die letzten Seiten sind interessant).
+						
+			
+	\section{Grafiken, Abbildungen}
+		Eine Grafik ist einfach ein eingefügtes Bild, eine Abbildung hat eine Nummer und eine Beschriftung (\verb"\caption"). Es können ohne Konvertierung in pdf\LaTeX{} \verb"jpg", \verb"png", \verb"pdf" eingebunden werden. \verb"pdf" ist eine Vektorgraphik und daher frei skalierbar ihne Verlust an Qualität. 
+		
+		Eine Grafik wird mit \verb"\includegraphics[<Optionen>]{<dateiname>}" eingebunden. 
+		Liegt die Graphik im Verzeichnis \verb"./abbildungen" unterhalb des Masterdokuments, wird sie automatisch gefunden, ansonsten muss man den \verb"\graphicspath" in der Präambel anpassen oder den Pfad angeben.
+		
+		Vorsicht: keine Leerzeichen und Sonderzeichen im Dateinamen (weder in Graphiken noch in Dokumentnamen, noch in Labels,\dots). Pfade in Unix-Stil mit \verb"/" auch in Windows (nicht \verb"\").
+		
+		Eine Abbildung wird vollständig so eingefügt (alternativ hilft TeXstudio: mit dem Graphikassistenten):
+
+		\begin{verbatim}
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=50mm]{HTL_Logo_neu.jpg}
+        \caption{Schullogo der HTL Wien 10}
+        \label{fig:HTL_Logo_neu}
+    \end{center}
+\end{figure}
+		\end{verbatim} 
+		
+		Das \verb"label" ist frei benennbar, TeXstudio schlägt den Namen der Abb. mit dem Präfix \verb"fig:" vor. Man kann sich im Text darauf folgendermaßen beziehen:\\ 
+		\verb"siehe Abb.~\ref{fig:HTL-Logo_neu} auf S.~\pageref{fig:HTL_Logo_neu}".\\
+		Was die Tilde \verb"~" bedeutet, finden Sie auf S.~\pageref{kap:tilde}.\\
+		Labels kann man überall im Text machen, z.\,B. \verb"kap:latex" und sich darauf beziehen.
+		
+		\verb"[H]" ist wichtig, wenn die Abbildung genau an dieser Stelle stehen soll, sonst verfolgt \LaTeX{} eine eigene, schwer nachvollziehbare Philosophie, wo die Abb. dann steht.
+		
+		Statt \verb"width=" kann auch \verb"height=" oder \verb"scale=" stehen, man kann Abbildungen auch in \LaTeX{} drehen, beschneiden usw. 
+		
+		Was \verb"begin{center}...\end{center}" bedeutet, sollte klar sein.
+   
+    \pagebreak
+   	\subsection{Für Diplomarbeiten bewährte, freie Software}
+   		\subsubsection{gnuplot}
+   			Wenn man Messdaten, Kurven usw. darstellen will, ist gnuplot das Programm der Wahl. 
+   		
+   		\subsubsection{ipe}
+	   		Für zweidimensionale Zeichnungen ist \verb"ipe" das richtige, hier kann man Texte in \LaTeX-Syntax schreiben. Speichern sollte man als \verb"*.pdf", dann kann man die Grafik leicht einfügen.  Eine als \verb"*.pdf" abgespeicherte Grafik kann man in ipe wieder weiterbearbeiten. Man kann auch \verb"*.jpg" und \verb"*.jpg" einfügen um z.\,B. Pfeile und Erklärungen einzufügen.
+	   		
+   		\subsubsection{yEd}
+	   		Ein einfaches Programm, um Schrittketten zu zeichnen ist yEd. Das Programm kann selbständig Knoten und Pfeile neu arrangieren, dadurch ist die Grafik sehr ansprechend.
+   		
+   		\subsubsection{Doxygen}
+	   		Für die Dokumentation von Software innerhalb des Quellcodes soll unbedingt \verb"doxygen" verwendet werden. \verb"doxygen" erstellt  aus dem Quellcode und aus Schlüsselwörtern im Kommentar eine verlinktes \verb"html"-Dokument, das die Funktionen, Strukturen, Variablen usw. beschreibt. Der Vorteil ist, dass die Dokumentation der Software im Quellcode steht und damit immer aktuell ist. Für die Diplomarbeit selbst kann von \verb"doxygen" auch ein \LaTeX-Dokument erstellt und als Anhang eingefügt werden.
+
+			Ein kurzes Beispiel aus [\cite[S.3]{wiki_doxygen}] (\verb"\**" ist ein Kommentar, den \verb"Doxygen" liest):	   		
+\begin{verbatim}
+ /**
+  * \brief  Exemplarische Funktion
+  *
+  *         Diese Funktion gibt den übergebenen Parameter
+  *         auf der Konsole aus.
+  *
+  * \param      parameter   Auszugebender Parameter
+  * \return                 Status-Code
+  *
+  */
+ int funktion(int parameter)
+ {
+     printf("Parameter: %d", parameter);
+     return 0;
+ }
+\end{verbatim}	   		
+	   		
+   		\subsubsection{Quellcode}
+   			Für die Dokumetation des Quellcodes stehen in \LaTeX{} z.\,B. das Paket \verb"listings" zur Verfügung.
+   			
+   			Mit \verb"\lstinputlisting{Datei}" kann eine ganze Datei einfach in die Diplomarbeit eingebunden werden.
+   			  
+   		
+		
+	\section{Tabellen}
+		Tabellen sind ein wenig mühsam, hier am besten den Tabellen-Assistenten von TeXstudio verwenden.

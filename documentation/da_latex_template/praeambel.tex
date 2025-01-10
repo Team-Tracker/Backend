@@ -1,0 +1,135 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%     LaTeX Präambel für die Dokumentvorlage
+%%     für Diplomarbeiten an der HTL Hollabrunn
+%%     ---------------------------------------------------------------------
+%%     !!  HIER BITTE NICHTS ÄNDERN, außer Sie wissen genau, was Sie tun  !! Wir wissen es
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,11pt,DIV15,oneside,normalheadings,headsepline,twoside]{scrreprt}
+									% mit chapter, section, subsection, subsubsection
+%\documentclass[a4paper,12pt,DIV15,oneside,normalheadings,headsepline]{scrartcl}
+									% mit section, subsection, subsubsection
+% ------------------------------------------------------------------------------------------------------------
+
+% -----------------PAKETE (löschen/hinzugeben nur, wenn man sich sicher ist) -------------------------------------
+\usepackage[utf8]{inputenc}		    % damit die Tastatur richtig erkannt wird (passt immer, egal welches OS)
+\usepackage{lmodern}
+\usepackage[T1]{fontenc} 			% europäische Schrifttypen, wichtig für Copy&Paste aus pdf
+\usepackage{textcomp}				% Sonderzeichen wie in l2kurz , S.45
+\usepackage{color}
+
+\usepackage[austrian]{babel}		% Abteilungen usw. \usepackage{german} beisst sich mit gnuplottex
+\usepackage[style=trad-unsrt, backend=biber]{biblatex}
+\usepackage{hyperref}
+\definecolor{darkblue}{rgb}{0,0,0.845}
+\hypersetup{colorlinks=true, citecolor=darkblue, urlcolor=darkblue, linkcolor=darkblue}
+\usepackage{url}
+	% macht die URL im Literaturverzeichnis hübscher
+	\DeclareFieldFormat{url}{\newline\mkbibacro{URL}\addcolon\nobreakspace\url{#1}}
+\usepackage{breakurl}
+% \usepackage[automark]{scrlayer-scrpage}
+\usepackage[left=2.2cm, right=1.5cm, top=3cm, bottom=4.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsfonts,textcomp}  % Mathegeschichten und Symbole
+\usepackage{wasysym,latexsym}      	% für \Smiley und \Frowny,...
+\usepackage[right]{eurosym}			% für \euro{} oder \EUR{53,15} Opt. left/right, jenachdem, ob 53,15€ oder €53,15
+\usepackage{makecell}
+\usepackage{lipsum}
+\usepackage{float}               	% einfacher Weg, um Abb. zu fixieren mit [H]
+\usepackage{nonfloat}
+%\usepackage[scanall]{psfrag}        % Ersetzen von Text in Abbildungen (geht *nicht* mit pdfLaTeX)
+\usepackage{lscape, pdflscape}      % soll Tabellen im Landscape-Format im Reader
+									% automatisch drehen, sonst wie landscape
+\usepackage{overpic}				% reinschreiben in ein Bild, Koordinaten jeweils von 0-100
+\usepackage{subfigure}				% \subfigure{\includegraphics[...]{...}}
+									% \subfigure{\includegraphics[...]{...}} <- mehrere Abb. in einer figure
+%\usepackage[shell]{gnuplottex}
+%\usepackage{pdfsync}				% für das Springen aus dem PDF in den Editor, nicht mehrnotwendig
+\usepackage{graphicx} 		        % ohne genauere Spezifizierung in eckigen Klammern
+\usepackage{setspace}				% für Anderung des Zeilenabstandes
+
+%\usepackage[basic]{circ}
+
+\usepackage{listings}				% Einbinden von Quellcode
+\usepackage{pst-pdf, pstcol, pst-osci}
+
+\usepackage{epstopdf}				% Beim kompilieren wird on the fly ein 	*.pdf erstellt.
+
+%\usepackage[thickspace,thickqspace,squaren]{SIunits}
+\usepackage{siunitx}
+\sisetup{locale = DE}
+
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+
+
+\titleformat{\chapter}
+{\normalfont\Huge\bfseries}{\thechapter}{1em}{}
+\titleformat{\section}
+{\normalfont\huge\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+{\normalfont\LARGE\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+{\normalfont\LARGE\bfseries}{\thesubsubsection}{1em}{}
+
+
+%---------------------------------- EINTRAEGE fuer  LAYOUT (evtl. anpassen)   -----------------------------------
+% Disable single lines at the start of a paragraph (Schusterjungen)
+\clubpenalty = 10000
+%
+% Disable single lines at the end of a paragraph (Hurenkinder)
+\widowpenalty = 10000 \displaywidowpenalty = 10000
+%
+
+%-------------------------------------------------------------------------------
+% Erstellt die Header und Footer der Seiten mit Autor pro Seite
+% Wenn nicht zweiseitig ([OL,OR], ...) anpassen
+%-------------------------------------------------------------------------------
+\fancypagestyle{alle}{
+	\fancyhf{}
+	\fancyhead[EL,OR]{\rightmark}
+	\fancyfoot[OL,ER]{HTBL Hollabrunn}
+	\fancyfoot[C]{\schuelerAlle}
+	\fancyfoot[EL,OR]{\thepage}
+	\renewcommand{\headrulewidth}{0.3pt}
+	\renewcommand{\footrulewidth}{0.3pt}
+}
+
+\fancypagestyle{plain}[alle]{
+	\fancyfoot[C]{}
+}
+
+\fancypagestyle{SchuelerA}[alle]{
+	\fancyfoot[C]{\schuelerA}
+}
+
+\fancypagestyle{SchuelerB}[alle]{
+	\fancyfoot[C]{\schuelerB}
+}
+
+\fancypagestyle{SchuelerC}[alle]{
+	\fancyfoot[C]{\schuelerC}
+}
+
+
+\fancypagestyle{SchuelerD}[alle]{
+	\fancyfoot[C]{\schuelerD}
+}
+
+\renewcommand{\chaptermark}[1]{\markright{\thechapter\ #1}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+%\renewcommand{\subsectionmark}[1]{\markright{\thesubsection\ #1}}
+%\renewcommand{\subsubsectionmark}[1]{\markright{\thesubsubsection\ #1}}
+
+%\sectionfont{\fontsize{12}{15}\selectfont}
+%\subsectionfont{\fontsize{12}{15}\selectfont}
+%\subsubsectionfont{\fontsize{12}{15}\selectfont}
+\renewcommand\lstlistlistingname{Code-Verweise}
+
+\parindent0em							% Einzug bei neuen Absätzen
+\parskip1mm								% Abstand zwischen Absätzen
+\sloppy									% nicht soooo genau mit dem Blocksatz
+% ---------------------------------------------------------------------------------------------------------------
+\def\schuelerEmpty{~}
+
+% ------------------------------------------------------------------------------------------------------

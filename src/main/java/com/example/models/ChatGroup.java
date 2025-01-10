@@ -12,9 +12,15 @@ public class ChatGroup {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private Integer chat_id;
-
+    // @Column(name = "name")
     private String name;
+
+    // @Column(name = "timestamp")
+    private final String timestamp;
+
+    public ChatGroup() {
+        this.timestamp = String.valueOf(System.currentTimeMillis());
+    }
 
     public Integer getId() {
         return id;
@@ -24,14 +30,6 @@ public class ChatGroup {
         this.id = id;
     }
 
-    public Integer getChat_id() {
-        return chat_id;
-    }
-
-    public void setChat_id(Integer chat_id) {
-        this.chat_id = chat_id;
-    }
-
     public String getName() {
         return name;
     }
@@ -39,4 +37,14 @@ public class ChatGroup {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    /*
+     * public void setTimestamp(String timestamp) {
+     * this.timestamp = timestamp;
+     * }
+     */
 }

@@ -7,6 +7,6 @@ import com.example.models.Chat;
 
 public interface ChatRepository extends CrudRepository<Chat, Integer> {
 
-    @Query(value = "SELECT * FROM chats WHERE user_id = ?1", nativeQuery = true)
-    public Iterable<Chat> findByUser_id(Integer user_id);
+    @Query(value = "SELECT * FROM chat WHERE user_id = ?1", nativeQuery = true)
+    public Iterable<Chat> findByUserId(Integer userId);
 }

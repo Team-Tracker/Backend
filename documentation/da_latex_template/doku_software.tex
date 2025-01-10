@@ -1,0 +1,34 @@
+\chapter{Dokumentation der Software}
+	\section{Quellcode}
+		wird mit dem \verb"listings"-Pakte eingef"ugt.
+		  		
+		Ein wiki-Book: \href{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings}{\texttt{https://en.wikibooks.org/wiki/LaTeX/Source\_Code\_Listings}}
+		  		
+		  		
+	\section{Funktionen, Strukturen, Datentypen,  Variablen}
+		Hier soll die mit \verb"Doxygen" \cite[S.~3]{wiki:doxygen} erstellte Dokumentation stehen
+		  		
+		Aus \cite{wiki:doxygen} stammt das einfache Beispiel, dass die Syntax in einem c-Kommentar eigentlich vollständig erläutert:
+
+\begin{verbatim}
+ /**
+  * \brief  Exemplarische Funktion zur Erklaerung von Doxygen
+  *
+  *         Diese Funktion gibt den uebergebenen Parameter
+  *         auf der Konsole aus.
+  *
+  * \param	parameter   Auszugebende Parameter
+  * \return	            Status-Code
+  *
+  */
+ int funktion(int parameter)
+ {
+     printf("Parameter: %d", parameter);   
+
+     return 0;
+ }
+\end{verbatim}		 
+
+	Doxygen erzeugt ein verlinktes \verb|*.html|-File bzw. ein \verb|*.tex|-File mit allen Funktionen, Datentypen, Abh"angigkeiten, das nur mehr mit \verb|\input{name_des_doxyoutputs.tex}| eingef"ugt werden braucht. 
+		  		
+		  		
