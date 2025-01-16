@@ -12,7 +12,7 @@ import io.github.teamtracker.repository.MessageRepository;
 import io.github.teamtracker.socket.WebSocket.WebSocketHandler;
 
 @Controller
-@RequestMapping(path = "/main")
+@RequestMapping(path = "/message")
 public class MessageController {
 
     @Autowired

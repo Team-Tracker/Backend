@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 @Transactional
 public class TeamService {
-    
+
     private final TeamRepository teamRepository;
     private final MemberRepository memberRepository;
 
@@ -39,9 +39,9 @@ public class TeamService {
         teamRepository.deleteById(id);
     }
 
-    public Member addMemberToTeam(Long teamId, Member member) {
+    public Member addMemberToTeam(Long teamId, Integer member) {
         Team team = teamRepository.findById(teamId).orElseThrow(() -> new IllegalArgumentException("Team not found"));
-        team.addMember(member);
+        Member member = memberRepository.findById(member).orElseThrow(() -> new IllegalArgumentException("Member not found"));
         return memberRepository.save(member);
     }
 

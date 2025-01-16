@@ -74,7 +74,7 @@ public class MainController {
         }
     }
 
-    @GetMapping("/reset")
+    @GetMapping(path = "/reset")
     public void reset() {
         userRepository.deleteAll();
     }

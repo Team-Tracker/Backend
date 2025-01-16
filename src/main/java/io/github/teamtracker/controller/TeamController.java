@@ -1,6 +1,5 @@
 package io.github.teamtracker.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import io.github.teamtracker.model.Member;
@@ -9,9 +8,10 @@ import io.github.teamtracker.service.TeamService;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/team")
 public class TeamController {
+
     private final TeamService teamService;
 
     public TeamController(TeamService teamService) {
@@ -39,8 +39,8 @@ public class TeamController {
     }
 
     @PostMapping("/{teamId}/members")
-    public Member addMemberToTeam(@PathVariable Long teamId, @RequestBody Member member) {
-        return this.teamService.addMemberToTeam(teamId, member);
+    public Member addMemberToTeam(@PathVariable Long teamId, @PathVariable Integer memberId) {
+        return this.teamService.addMemberToTeam(teamId, memberId);
     }
 
     @DeleteMapping("/{teamId}/members/{memberId}")
