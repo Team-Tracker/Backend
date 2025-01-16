@@ -11,32 +11,33 @@ import io.github.teamtracker.filter.JwtFilter;
 @Configuration
 public class SecurityConfig {
 
+    @SuppressWarnings("deprecation")
+
+    @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.csrf(csrf -> csrf.disable())
+                .authorizeRequests(requests -> requests
+                        .anyRequest().permitAll())
+                .httpBasic(basic -> basic.disable());
+
+        return http.build();
+    }
+
     /*
      * @SuppressWarnings("deprecation")
      * 
      * @Bean
-     * SecurityFilterChain securityFilterChain(HttpSecurity http) throws
-     * Exception {
-     * http.csrf(csrf -> csrf.disable())
+     * SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+     * http
+     * .csrf(csrf -> csrf.disable())
      * .authorizeRequests(requests -> requests
-     * .anyRequest().permitAll())
-     * .httpBasic(basic -> basic.disable());
+     * .requestMatchers("/auth/**").permitAll()
+     * .anyRequest().authenticated()
+     * .and()
+     * .addFilterBefore(new JwtFilter(),
+     * UsernamePasswordAuthenticationFilter.class));
      * 
      * return http.build();
      * }
      */
-
-    @SuppressWarnings("deprecation")
-    @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(csrf -> csrf.disable())
-                .authorizeRequests(requests -> requests
-                        .requestMatchers("/auth/**").permitAll()
-                        .anyRequest().authenticated()
-                        .and()
-                        .addFilterBefore(new JwtFilter(), UsernamePasswordAuthenticationFilter.class));
-
-        return http.build();
-    }
 }

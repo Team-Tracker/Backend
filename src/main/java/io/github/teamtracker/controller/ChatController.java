@@ -52,7 +52,7 @@ public class ChatController {
         return id;
     }
 
-    @PostMapping(path = "/create")
+    @PostMapping(path = "/createSingle")
     public @ResponseBody Integer createChat(@RequestParam Integer userId) {
         int id = ChatHelper.createChatGroup(userId, chatGroupRepository);
 
