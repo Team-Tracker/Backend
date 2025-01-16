@@ -1,6 +1,7 @@
 package io.github.teamtracker.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,15 +30,15 @@ public class AuthController {
      * @return the ID of the user if login is successful, -1 otherwise
      */
     @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password) {
+    public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
         User user = userRepository.findByUsername(username);
 
         try {
             String jwt = LoginHelper.login(user, password);
 
-            return jwt;
+            return ResponseEntity.ok(jwt);
         } catch (LoginException exception) {
-            return exception.getMessage();
+            return ResponseEntity.status(401).body(exception.getMessage());
         }
     }
 }
