@@ -77,8 +77,9 @@ public class WebSocket implements WebSocketConfigurer {
          * 
          * @param userId the ID of the user
          */
-        public void registerUser(Integer userId, Integer sessionId) {
-            sessions.get(sessionId).getAttributes().put("user", userId);
+        public void registerUser(Integer userId, String sessionId) {
+            sessions.stream().filter(session -> session.getId().equals(sessionId)).findFirst().get()
+                    .getAttributes().put("user", userId);
         }
 
         /**

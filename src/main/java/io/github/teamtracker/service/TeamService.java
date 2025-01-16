@@ -14,6 +14,7 @@ import java.util.Optional;
 @Service
 @Transactional
 public class TeamService {
+    
     private final TeamRepository teamRepository;
     private final MemberRepository memberRepository;
 

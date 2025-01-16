@@ -33,7 +33,7 @@ public class ChatController {
     private ChatRepository chatRepository;
 
     @PostMapping(path = "/register")
-    public @ResponseBody Integer register(@RequestParam Integer userId, @RequestParam Integer sessionId)
+    public @ResponseBody String register(@RequestParam Integer userId, @RequestParam String sessionId)
             throws Exception {
         messageWebSocketHandler.registerUser(userId, sessionId);
 
