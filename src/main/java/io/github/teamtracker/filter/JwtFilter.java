@@ -13,29 +13,34 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 public class JwtFilter extends OncePerRequestFilter {
 
-    @SuppressWarnings("null")
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        String authorizationHeader = request.getHeader("Authorization");
+        try {
+            String authorizationHeader = request.getHeader("Authorization");
 
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            String token = authorizationHeader.substring(7);
+            if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+                String token = authorizationHeader.substring(7);
 
-            if (JwtUtil.isTokenValid(token)) {
-                String username = JwtUtil.extractUsername(token);
-                String userId = JwtUtil.extractUserId(token);
+                if (JwtUtil.isTokenValid(token)) {
+                    String username = JwtUtil.extractUsername(token);
+                    String userId = JwtUtil.extractUserId(token);
 
-                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                        username, null, Collections.emptyList());
+                    UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                            username, null, Collections.singletonList(new SimpleGrantedAuthority("USER")));
 
-                authenticationToken.setDetails(userId);
+                    request.setAttribute("userId", userId);
 
-                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                    SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                }
             }
+        } catch (Exception exception) {
+            SecurityContextHolder.clearContext();
         }
 
         filterChain.doFilter(request, response);

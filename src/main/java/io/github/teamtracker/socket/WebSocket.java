@@ -26,7 +26,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class WebSocket implements WebSocketConfigurer {
 
     @Override
-    public void registerWebSocketHandlers(@SuppressWarnings("null") WebSocketHandlerRegistry registry) {
+    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry.addHandler(webSocketHandler(), "/ws").setAllowedOrigins("*");
     }
 
@@ -51,7 +51,7 @@ public class WebSocket implements WebSocketConfigurer {
          * Add the WebSocket session to the list of active sessions.
          */
         @Override
-        public void afterConnectionEstablished(@SuppressWarnings("null") WebSocketSession session) throws Exception {
+        public void afterConnectionEstablished(WebSocketSession session) throws Exception {
             sessions.add(session);
 
             String message = "{\"sessionId\": \"" + session.getId() + "\"}";
@@ -67,8 +67,8 @@ public class WebSocket implements WebSocketConfigurer {
          * Remove the WebSocket session from the list of active sessions.
          */
         @Override
-        public void afterConnectionClosed(@SuppressWarnings("null") WebSocketSession session,
-                @SuppressWarnings("null") CloseStatus status) throws Exception {
+        public void afterConnectionClosed(WebSocketSession session,
+                CloseStatus status) throws Exception {
             sessions.remove(session);
         }
 
@@ -100,8 +100,8 @@ public class WebSocket implements WebSocketConfigurer {
                             if (chat.getChatGroupId().equals(message.getChatGroupId())) {
                                 try {
                                     session.sendMessage(new TextMessage(jsonMessage));
-                                } catch (Exception e) {
-                                    e.printStackTrace();
+                                } catch (Exception exception) {
+                                    exception.printStackTrace();
                                 }
                             }
                         });

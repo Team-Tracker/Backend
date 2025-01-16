@@ -11,9 +11,11 @@ public class JwtUtil {
     private static final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     private static final long EXPIRATION_TIME = 86400000; // 1 day
 
-    public static String generateToken(String username) {
+    public static String generateToken(String username, Integer id) {
         return Jwts.builder()
                 .setSubject(username)
+                .setId(id.toString())
+                .claim("role", "USER")
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + JwtUtil.EXPIRATION_TIME))
                 .signWith(JwtUtil.SECRET_KEY)
@@ -38,9 +40,19 @@ public class JwtUtil {
                 .getId();
     }
 
+    public static String extractRoles(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(JwtUtil.SECRET_KEY)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .get("roles", String.class);
+    }
+
     public static boolean isTokenValid(String token) {
         try {
             Jwts.parserBuilder().setSigningKey(JwtUtil.SECRET_KEY).build().parseClaimsJws(token);
+
             return true;
         } catch (Exception e) {
             return false;

@@ -1,5 +1,7 @@
 package io.github.teamtracker.controller;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -53,7 +55,8 @@ public class UserController {
 
         for (User user : users) {
             if (user.getId() == id) {
-                ((java.util.Collection<User>) users).remove(user);
+                ((Collection<User>) users).remove(user);
+
                 break;
             }
         }
@@ -76,5 +79,23 @@ public class UserController {
         }
 
         return username;
+    }
+
+    /**
+     * Resolve the user ID by username.
+     * 
+     * @param username the username of the user
+     * @return the ID of the user, or -1 if not found
+     * 
+     */
+    @GetMapping(path = "/resolveId")
+    public @ResponseBody Integer getUserId(@RequestParam String username) {
+        Integer id = this.userRepository.resolveId(username);
+
+        if (id == null) {
+            return -1;
+        }
+
+        return id;
     }
 }

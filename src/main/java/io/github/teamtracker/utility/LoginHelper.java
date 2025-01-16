@@ -14,7 +14,9 @@ public class LoginHelper {
         }
 
         if (BCrypt.checkpw(password, user.getPassword())) {
-            return JwtUtil.generateToken(user.getUsername());
+            int id = user.getId();
+
+            return JwtUtil.generateToken(user.getUsername(), id);
         }
 
         throw new LoginException("Invalid credentials");

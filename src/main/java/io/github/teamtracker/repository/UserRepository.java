@@ -12,4 +12,7 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 
     @Query(value = "SELECT username FROM user WHERE id = ?1", nativeQuery = true)
     String resolveUsername(Integer id);
+
+    @Query(value = "SELECT id FROM user WHERE username = ?1", nativeQuery = true)
+    Integer resolveId(String username);
 }

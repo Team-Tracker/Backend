@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import io.github.teamtracker.model.Chat;
 import io.github.teamtracker.model.ChatGroup;
-import io.github.teamtracker.model.Message;
 import io.github.teamtracker.repository.ChatGroupRepository;
 import io.github.teamtracker.repository.ChatRepository;
-import io.github.teamtracker.repository.MessageRepository;
 import io.github.teamtracker.socket.WebSocket.WebSocketHandler;
 import io.github.teamtracker.utility.ChatHelper;
 
@@ -43,11 +41,11 @@ public class ChatController {
     }
 
     @PostMapping(path = "/create")
-    public @ResponseBody Integer createChat(@RequestParam Integer userId, @RequestParam Integer other_user_id) {
-        int id = ChatHelper.createChatGroup(userId, other_user_id, chatGroupRepository);
+    public @ResponseBody Integer createChat(@RequestParam Integer userId, @RequestParam Integer otherUserId) {
+        int id = ChatHelper.createChatGroup(userId, otherUserId, chatGroupRepository);
 
         ChatHelper.createChat(userId, id, chatRepository);
-        ChatHelper.createChat(other_user_id, id, chatRepository);
+        ChatHelper.createChat(otherUserId, id, chatRepository);
 
         return id;
     }

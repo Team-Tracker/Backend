@@ -51,10 +51,14 @@ public class OldMainController {
     @PostMapping(path = "/addUnsafe")
     public @ResponseBody String addUnsafeUser(@RequestParam String username, @RequestParam String password) {
         User user = new User();
+
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
         user.setUsername(username);
         user.setPassword(hashedPassword);
+
         userRepository.save(user);
+
         return user.getId().toString();
     }
 
@@ -68,10 +72,13 @@ public class OldMainController {
     @PatchMapping(path = "/password")
     public @ResponseBody String changePassword(@RequestParam Integer id, @RequestParam String hashedPassword) {
         Optional<User> optionalUser = userRepository.findById(id);
+
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
+
             user.setPassword(hashedPassword);
             userRepository.save(user);
+
             return user.getId().toString();
         } else {
             return "User not found";
@@ -89,11 +96,16 @@ public class OldMainController {
     @PatchMapping(path = "/passwordUnsafe")
     public @ResponseBody String changePasswordUnsafe(@RequestParam Integer id, @RequestParam String password) {
         Optional<User> optionalUser = userRepository.findById(id);
+
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
+
             String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
             user.setPassword(hashedPassword);
+
             userRepository.save(user);
+
             return user.getId().toString();
         } else {
             return "User not found";

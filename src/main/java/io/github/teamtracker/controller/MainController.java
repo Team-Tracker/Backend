@@ -13,6 +13,7 @@ import io.github.teamtracker.model.User;
 import io.github.teamtracker.repository.UserRepository;
 
 import java.util.Optional;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequestMapping(path = "/main")
@@ -71,5 +72,10 @@ public class MainController {
         } else {
             return "User not found";
         }
+    }
+
+    @GetMapping("/reset")
+    public void reset() {
+        userRepository.deleteAll();
     }
 }
