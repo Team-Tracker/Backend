@@ -39,7 +39,7 @@ public class TeamController {
     }
 
     @PostMapping("/{teamId}/members")
-    public Member addMemberToTeam(@PathVariable Long teamId, @PathVariable Integer memberId) {
+    public Member addMemberToTeam(@PathVariable Long teamId, @PathVariable Member memberId) {
         return this.teamService.addMemberToTeam(teamId, memberId);
     }
 

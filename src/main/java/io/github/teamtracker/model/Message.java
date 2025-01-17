@@ -18,7 +18,7 @@ public class Message {
     /**
      * The user who sent the message
      */
-    private Integer user_id;
+    private Integer userid;
 
     /**
      * The chat the message belongs to
@@ -43,12 +43,12 @@ public class Message {
         this.id = id;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getUserid() {
+        return userid;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUserid(Integer user_id) {
+        this.userid = user_id;
     }
 
     public Integer getChatGroupId() {

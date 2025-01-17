@@ -26,7 +26,7 @@ public class MessageController {
             @RequestParam String text) throws Exception {
         Message message = new Message();
 
-        message.setUser_id(userId);
+        message.setUserid(userId);
         message.setChatGroupId(chatId);
         message.setText(text);
 
