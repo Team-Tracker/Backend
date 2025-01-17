@@ -39,9 +39,9 @@ public class TeamService {
         teamRepository.deleteById(id);
     }
 
-    public Member addMemberToTeam(Long teamId, Integer member) {
+    public Member addMemberToTeam(Long teamId, Member member) {
         Team team = teamRepository.findById(teamId).orElseThrow(() -> new IllegalArgumentException("Team not found"));
-        Member member = memberRepository.findById(member).orElseThrow(() -> new IllegalArgumentException("Member not found"));
+        team.addMember(member);
         return memberRepository.save(member);
     }
 
