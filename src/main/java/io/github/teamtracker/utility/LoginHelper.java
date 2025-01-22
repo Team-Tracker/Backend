@@ -4,7 +4,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import io.github.teamtracker.exception.LoginException;
 import io.github.teamtracker.model.User;
-import io.github.teamtracker.tools.JwtUtil;
+import io.github.teamtracker.tool.JwtUtil;
 
 public class LoginHelper {
 

@@ -1,4 +1,4 @@
-package io.github.teamtracker.tools;
+package io.github.teamtracker.tool;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
