@@ -4,15 +4,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import io.github.teamtracker.model.Chat;
-import io.github.teamtracker.model.ChatGroup;
 import io.github.teamtracker.model.Message;
 import io.github.teamtracker.repository.MessageRepository;
 import io.github.teamtracker.socket.WebSocket.WebSocketHandler;
@@ -36,6 +31,10 @@ public class MessageController {
         message.setUserid(userId);
         message.setChatGroupId(chatId);
         message.setText(text);
+
+        long timestamp = System.currentTimeMillis();
+
+        message.setTimestamp(Long.toString(timestamp));
 
         this.messageRepository.save(message);
 

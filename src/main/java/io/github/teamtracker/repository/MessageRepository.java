@@ -7,9 +7,6 @@ import io.github.teamtracker.model.Message;
 
 public interface MessageRepository extends CrudRepository<Message, Integer> {
 
-    @Query(value = "SELECT m.*\n" +
-            "FROM message m\n" +
-            "JOIN chat c ON m.chatGroupId = c.chat_group_id\n" +
-            "WHERE c.user_id = ?1;", nativeQuery = true)
+    @Query(value = "SELECT m.* FROM message m JOIN chat c ON m.chat_group_id = c.chat_group_id WHERE c.user_id = ?1", nativeQuery = true)
     public Iterable<Message> findByUserId(Integer userId);
 }
