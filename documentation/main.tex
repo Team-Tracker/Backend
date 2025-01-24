@@ -1,0 +1,56 @@
+\documentclass[a4paper,12pt]{article} % Defines the document class
+\usepackage[utf8]{inputenc} % For UTF-8 encoding
+\usepackage{amsmath} % For advanced mathematical formulas
+\usepackage{graphicx} % For including images
+\usepackage{hyperref} % For clickable links
+
+\title{An Example LaTeX Document}
+\author{John Doe}
+\date{\today}
+
+\begin{document}
+
+\maketitle % Generates the title, author, and date
+
+\tableofcontents % Generates the table of contents
+
+\section{Introduction}
+LaTeX is a typesetting system commonly used for technical and scientific documents. It is particularly well-suited for documents with complex formatting requirements, such as mathematical equations, references, and tables.
+
+\subsection{Why Use LaTeX?}
+Some advantages of LaTeX include:
+\begin{itemize}
+    \item Professional-quality typesetting
+    \item Support for complex formulas and equations
+    \item Easy management of references and bibliographies
+\end{itemize}
+
+\section{Mathematical Examples}
+Here are some examples of mathematical formatting in LaTeX:
+\subsection{Inline Equations}
+The quadratic formula is written inline as: \( x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \).
+
+\subsection{Displayed Equations}
+Displayed equations appear on their own line:
+\[
+E = mc^2
+\]
+
+\section{Including Figures}
+You can include images using the \texttt{graphicx} package. For example:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{example-image} % Replace "example-image" with your image file
+    \caption{An example image.}
+    \label{fig:example}
+\end{figure}
+
+\section{Hyperlinks}
+You can include clickable links using the \texttt{hyperref} package:
+\href{https://www.latex-project.org}{LaTeX Project Website}.
+
+\section{Conclusion}
+This document demonstrates the basic structure and features of a LaTeX document. For more details, refer to the official LaTeX documentation.
+
+\end{document}
