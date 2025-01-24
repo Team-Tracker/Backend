@@ -29,7 +29,7 @@ public class AuthController {
      * @param password the plain text password of the user
      * @return the ID of the user if login is successful, -1 otherwise
      */
-    @PostMapping("/login")
+    @PostMapping(path = "/login")
     public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
         User user = userRepository.findByUsername(username);
 
