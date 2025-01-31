@@ -2,8 +2,8 @@ package io.github.teamtracker.controller;
 
 import org.springframework.web.bind.annotation.*;
 
-import io.github.teamtracker.model.Member;
-import io.github.teamtracker.model.Team;
+import io.github.teamtracker.model.team.Member;
+import io.github.teamtracker.model.team.Team;
 import io.github.teamtracker.service.TeamService;
 
 import java.util.List;

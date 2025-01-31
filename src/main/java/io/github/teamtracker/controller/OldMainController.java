@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import io.github.teamtracker.model.User;
+import io.github.teamtracker.model.user.User;
 import io.github.teamtracker.repository.UserRepository;
 
 import java.util.Optional;

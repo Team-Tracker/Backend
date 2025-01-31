@@ -3,7 +3,7 @@ package io.github.teamtracker.repository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import io.github.teamtracker.model.Chat;
+import io.github.teamtracker.model.chat.Chat;
 
 public interface ChatRepository extends CrudRepository<Chat, Integer> {
 

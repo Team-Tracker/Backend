@@ -3,8 +3,8 @@ package io.github.teamtracker.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import io.github.teamtracker.model.Member;
-import io.github.teamtracker.model.Team;
+import io.github.teamtracker.model.team.Member;
+import io.github.teamtracker.model.team.Team;
 import io.github.teamtracker.repository.MemberRepository;
 import io.github.teamtracker.repository.TeamRepository;
 

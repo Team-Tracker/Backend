@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import io.github.teamtracker.model.Message;
+import io.github.teamtracker.model.chat.Message;
 import io.github.teamtracker.repository.MessageRepository;
 import io.github.teamtracker.socket.WebSocket.WebSocketHandler;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.teamtracker.exception.LoginException;
-import io.github.teamtracker.model.User;
+import io.github.teamtracker.model.user.User;
 import io.github.teamtracker.repository.UserRepository;
 import io.github.teamtracker.utility.LoginHelper;
 

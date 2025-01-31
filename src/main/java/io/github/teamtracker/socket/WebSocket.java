@@ -9,7 +9,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import io.github.teamtracker.repository.ChatRepository;
 import io.github.teamtracker.Application;
-import io.github.teamtracker.model.Message;
+import io.github.teamtracker.model.chat.Message;
 
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.context.annotation.Configuration;

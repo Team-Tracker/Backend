@@ -1,4 +1,4 @@
-package io.github.teamtracker.model;
+package io.github.teamtracker.model.chat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

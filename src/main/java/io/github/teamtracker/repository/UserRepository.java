@@ -3,7 +3,7 @@ package io.github.teamtracker.repository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import io.github.teamtracker.model.User;
+import io.github.teamtracker.model.user.User;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
 

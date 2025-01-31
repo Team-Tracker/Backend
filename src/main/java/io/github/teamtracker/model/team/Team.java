@@ -1,4 +1,4 @@
-package io.github.teamtracker.model;
+package io.github.teamtracker.model.team;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,7 +1,7 @@
 package io.github.teamtracker.utility;
 
-import io.github.teamtracker.model.Chat;
-import io.github.teamtracker.model.ChatGroup;
+import io.github.teamtracker.model.chat.Chat;
+import io.github.teamtracker.model.chat.ChatGroup;
 import io.github.teamtracker.repository.ChatGroupRepository;
 import io.github.teamtracker.repository.ChatRepository;
 
