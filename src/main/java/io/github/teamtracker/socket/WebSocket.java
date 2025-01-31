@@ -39,13 +39,13 @@ public class WebSocket implements WebSocketConfigurer {
     @Component
     public static class WebSocketHandler extends TextWebSocketHandler {
 
+        @Autowired
+        private ChatRepository chatRepository;
+
         /**
          * The list of active WebSocket sessions.
          */
         private List<WebSocketSession> sessions = new CopyOnWriteArrayList<>();
-
-        @Autowired
-        private ChatRepository chatRepository;
 
         /**
          * Add the WebSocket session to the list of active sessions.

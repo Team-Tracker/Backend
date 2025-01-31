@@ -1,5 +1,6 @@
 package io.github.teamtracker.model.scrum;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,10 +13,11 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column(name = "sprint_id")
     private Integer sprintId;
 
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Integer id) {
@@ -23,7 +25,7 @@ public class Board {
     }
 
     public Integer getSprintId() {
-        return sprintId;
+        return this.sprintId;
     }
 
     public void setSprintId(Integer sprintId) {

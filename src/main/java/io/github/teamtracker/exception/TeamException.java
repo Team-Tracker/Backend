@@ -1,21 +1,21 @@
 package io.github.teamtracker.exception;
 
-public class AccountException extends RuntimeException {
+public class TeamException extends IllegalArgumentException {
 
     private int errorCode;
 
-    public AccountException(String message) {
+    public TeamException(String message) {
         super(message);
     }
 
-    public AccountException(String message, int errorCode) {
+    public TeamException(String message, int errorCode) {
         super(message);
 
         this.errorCode = errorCode;
     }
 
     public int getErrorCode() {
-        return this.errorCode;
+        return errorCode;
     }
 
     public void setErrorCode(int errorCode) {

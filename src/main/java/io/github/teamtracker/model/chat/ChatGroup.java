@@ -12,10 +12,8 @@ public class ChatGroup {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    // @Column(name = "name")
     private String name;
 
-    // @Column(name = "timestamp")
     private final String timestamp;
 
     public ChatGroup() {
@@ -23,7 +21,7 @@ public class ChatGroup {
     }
 
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Integer id) {
@@ -31,7 +29,7 @@ public class ChatGroup {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -39,12 +37,6 @@ public class ChatGroup {
     }
 
     public String getTimestamp() {
-        return timestamp;
+        return this.timestamp;
     }
-
-    /*
-     * public void setTimestamp(String timestamp) {
-     * this.timestamp = timestamp;
-     * }
-     */
 }

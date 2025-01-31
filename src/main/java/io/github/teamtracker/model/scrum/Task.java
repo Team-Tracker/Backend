@@ -1,5 +1,6 @@
 package io.github.teamtracker.model.scrum;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,20 +17,18 @@ public class Task {
 
     private String description;
 
+    @Column(name = "board_id")
     private Integer boardId;
 
+    @Column(name = "creator_id")
     private Integer creatorId;
 
     public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+        return this.id;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -37,7 +36,7 @@ public class Task {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
@@ -45,7 +44,7 @@ public class Task {
     }
 
     public Integer getBoardId() {
-        return boardId;
+        return this.boardId;
     }
 
     public void setBoardId(Integer boardId) {
@@ -53,7 +52,7 @@ public class Task {
     }
 
     public Integer getCreatorId() {
-        return creatorId;
+        return this.creatorId;
     }
 
     public void setCreatorId(Integer creatorId) {

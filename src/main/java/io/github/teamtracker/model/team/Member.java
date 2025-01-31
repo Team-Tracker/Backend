@@ -6,9 +6,10 @@ import jakarta.persistence.*;
 public class Member {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column(name = "user_id")
     private Integer userId;
 
     private String role;
@@ -28,32 +29,28 @@ public class Member {
         this.team = team;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
-    }
-
-    public Team getTeam() {
-        return team;
-    }
-
     public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+        return this.id;
     }
 
     public Integer getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
+    public Team getTeam() {
+        return this.team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
     public String getRole() {
-        return role;
+        return this.role;
     }
 
     public void setRole(String role) {

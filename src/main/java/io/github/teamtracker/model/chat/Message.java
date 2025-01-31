@@ -1,5 +1,6 @@
 package io.github.teamtracker.model.chat;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,35 +9,26 @@ import jakarta.persistence.Id;
 @Entity
 public class Message {
 
-    /**
-     * Primary key
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    /**
-     * The user who sent the message
-     */
+    @Column(name = "user_id")
     private Integer userid;
 
-    /**
-     * The chat the message belongs to
-     */
+    @Column(name = "chat_group_id")
     private Integer chatGroupId;
 
-    /**
-     * The message text
-     */
     private String text;
 
-    /**
-     * The timestamp of the message
-     */
-    private String timestamp;
+    private final String timestamp;
+
+    public Message() {
+        this.timestamp = String.valueOf(System.currentTimeMillis());
+    }
 
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Integer id) {
@@ -44,15 +36,15 @@ public class Message {
     }
 
     public Integer getUserid() {
-        return userid;
+        return this.userid;
     }
 
-    public void setUserid(Integer user_id) {
-        this.userid = user_id;
+    public void setUserid(Integer userId) {
+        this.userid = userId;
     }
 
     public Integer getChatGroupId() {
-        return chatGroupId;
+        return this.chatGroupId;
     }
 
     public void setChatGroupId(Integer chatGroupId) {
@@ -60,7 +52,7 @@ public class Message {
     }
 
     public String getText() {
-        return text;
+        return this.text;
     }
 
     public void setText(String text) {
@@ -68,10 +60,6 @@ public class Message {
     }
 
     public String getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+        return this.timestamp;
     }
 }

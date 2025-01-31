@@ -32,10 +32,6 @@ public class MessageController {
         message.setChatGroupId(chatId);
         message.setText(text);
 
-        long timestamp = System.currentTimeMillis();
-
-        message.setTimestamp(Long.toString(timestamp));
-
         this.messageRepository.save(message);
 
         this.messageWebSocketHandler.broadcastMessage(message);

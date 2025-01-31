@@ -3,6 +3,7 @@ package io.github.teamtracker.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import io.github.teamtracker.exception.TeamException;
 import io.github.teamtracker.model.team.Member;
 import io.github.teamtracker.model.team.Team;
 import io.github.teamtracker.repository.MemberRepository;
@@ -24,32 +25,37 @@ public class TeamService {
     }
 
     public List<Team> getAllTeams() {
-        return teamRepository.findAll();
+        return this.teamRepository.findAll();
     }
 
-    public Optional<Team> getTeamById(Long id) {
-        return teamRepository.findById(id);
+    public Optional<Team> getTeamById(Integer id) {
+        return this.teamRepository.findById(id);
     }
 
     public Team createTeam(Team team) {
-        return teamRepository.save(team);
+        return this.teamRepository.save(team);
     }
 
-    public void deleteTeam(Long id) {
-        teamRepository.deleteById(id);
+    public void deleteTeam(Integer id) {
+        this.teamRepository.deleteById(id);
     }
 
-    public Member addMemberToTeam(Long teamId, Member member) {
-        Team team = teamRepository.findById(teamId).orElseThrow(() -> new IllegalArgumentException("Team not found"));
+    public Member addMemberToTeam(Integer teamId, Member member) {
+        Team team = this.teamRepository.findById(teamId).orElseThrow(() -> new TeamException("Team not found"));
+
         team.addMember(member);
-        return memberRepository.save(member);
+
+        return this.memberRepository.save(member);
     }
 
-    public void removeMemberFromTeam(Long teamId, Long memberId) {
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new IllegalArgumentException("Member not found"));
-        Team team = teamRepository.findById(teamId).orElseThrow(() -> new IllegalArgumentException("Team not found"));
+    public void removeMemberFromTeam(Integer teamId, Integer memberId) {
+        Member member = this.memberRepository.findById(memberId)
+                .orElseThrow(() -> new TeamException("Member not found"));
+
+        Team team = this.teamRepository.findById(teamId).orElseThrow(() -> new TeamException("Team not found"));
+
         team.removeMember(member);
-        memberRepository.delete(member);
+
+        this.memberRepository.delete(member);
     }
 }

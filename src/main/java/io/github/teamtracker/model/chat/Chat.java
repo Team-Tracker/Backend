@@ -28,7 +28,7 @@ public class Chat {
     }
 
     public Integer getChatGroupId() {
-        return chatGroupId;
+        return this.chatGroupId;
     }
 
     public void setChatGroupId(Integer chatGroupId) {
@@ -36,7 +36,7 @@ public class Chat {
     }
 
     public Integer getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public void setUserId(Integer userId) {

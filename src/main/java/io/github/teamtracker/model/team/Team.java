@@ -1,9 +1,5 @@
 package io.github.teamtracker.model.team;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -18,33 +14,32 @@ public class Team {
 
     private String name;
 
+    @Column(name = "creater_id")
     private Integer createrId;
 
     private String description;
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Member> members = new HashSet<>();
+    private final Set<Member> members = new HashSet<>();
 
     public void addMember(Member member) {
-        members.add(member);
+        this.members.add(member);
+
         member.setTeam(this);
     }
 
     public void removeMember(Member member) {
-        members.remove(member);
+        this.members.remove(member);
+
         member.setTeam(null);
     }
 
     public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+        return this.id;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -52,7 +47,7 @@ public class Team {
     }
 
     public Integer getCreaterId() {
-        return createrId;
+        return this.createrId;
     }
 
     public void setCreaterId(Integer createrId) {
@@ -60,10 +55,14 @@ public class Team {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<Member> getMembers() {
+        return this.members;
     }
 }

@@ -15,7 +15,7 @@ public class LoginException extends RuntimeException {
     }
 
     public int getErrorCode() {
-        return errorCode;
+        return this.errorCode;
     }
 
     public void setErrorCode(int errorCode) {

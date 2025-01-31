@@ -32,7 +32,7 @@ public class Event {
     private String eventDuration;
 
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Integer id) {
@@ -40,7 +40,7 @@ public class Event {
     }
 
     public Integer getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public void setUserId(Integer userId) {
@@ -48,7 +48,7 @@ public class Event {
     }
 
     public String getEventName() {
-        return eventName;
+        return this.eventName;
     }
 
     public void setEventName(String eventName) {
@@ -56,7 +56,7 @@ public class Event {
     }
 
     public String getEventDescription() {
-        return eventDescription;
+        return this.eventDescription;
     }
 
     public void setEventDescription(String eventDescription) {
@@ -64,7 +64,7 @@ public class Event {
     }
 
     public String getEventDate() {
-        return eventDate;
+        return this.eventDate;
     }
 
     public void setEventDate(String eventDate) {
@@ -72,7 +72,7 @@ public class Event {
     }
 
     public String getEventTime() {
-        return eventTime;
+        return this.eventTime;
     }
 
     public void setEventTime(String eventTime) {
@@ -80,7 +80,7 @@ public class Event {
     }
 
     public String getEventDuration() {
-        return eventDuration;
+        return this.eventDuration;
     }
 
     public void setEventDuration(String eventDuration) {

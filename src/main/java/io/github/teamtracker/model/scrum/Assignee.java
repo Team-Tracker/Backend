@@ -1,5 +1,6 @@
 package io.github.teamtracker.model.scrum;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,20 +13,18 @@ public class Assignee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column(name = "user_id")
     private Integer userId;
 
+    @Column(name = "task_id")
     private Integer taskId;
 
     public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+        return this.id;
     }
 
     public Integer getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public void setUserId(Integer userId) {
@@ -33,7 +32,7 @@ public class Assignee {
     }
 
     public Integer getTaskId() {
-        return taskId;
+        return this.taskId;
     }
 
     public void setTaskId(Integer taskId) {
