@@ -24,49 +24,49 @@ import java.util.List;
 public class ChatController {
 
     @Autowired
-    private WebSocketHandler messageWebSocketHandler;
-
-    @Autowired
     private ChatGroupRepository chatGroupRepository;
 
     @Autowired
     private ChatRepository chatRepository;
 
+    @Autowired
+    private WebSocketHandler messageWebSocketHandler;
+
     @PostMapping(path = "/register")
     public @ResponseBody String register(@RequestParam Integer userId, @RequestParam String sessionId)
             throws Exception {
-        messageWebSocketHandler.registerUser(userId, sessionId);
+        this.messageWebSocketHandler.registerUser(userId, sessionId);
 
         return sessionId;
     }
 
     @PostMapping(path = "/create")
     public @ResponseBody Integer createChat(@RequestParam Integer userId, @RequestParam Integer otherUserId) {
-        int id = ChatHelper.createChatGroup(userId, otherUserId, chatGroupRepository);
+        int id = ChatHelper.createChatGroup(userId, otherUserId, this.chatGroupRepository);
 
-        ChatHelper.createChat(userId, id, chatRepository);
-        ChatHelper.createChat(otherUserId, id, chatRepository);
+        ChatHelper.createChat(userId, id, this.chatRepository);
+        ChatHelper.createChat(otherUserId, id, this.chatRepository);
 
         return id;
     }
 
     @PostMapping(path = "/createSingle")
     public @ResponseBody Integer createChat(@RequestParam Integer userId) {
-        int id = ChatHelper.createChatGroup(chatGroupRepository);
+        int id = ChatHelper.createChatGroup(this.chatGroupRepository);
 
-        ChatHelper.createChat(userId, id, chatRepository);
+        ChatHelper.createChat(userId, id, this.chatRepository);
 
         return id;
     }
 
     @GetMapping(path = "/chats")
     public @ResponseBody Iterable<ChatGroup> getChats(@RequestParam Integer userId) {
-        Iterable<Chat> chats = chatRepository.findByUserId(userId);
+        Iterable<Chat> chats = this.chatRepository.findByUserId(userId);
 
         List<ChatGroup> chatGroups = new ArrayList<>();
 
         for (Chat chat : chats) {
-            chatGroups.add(chatGroupRepository.findById(chat.getChatGroupId()).get());
+            chatGroups.add(this.chatGroupRepository.findById(chat.getChatGroupId()).get());
         }
 
         return chatGroups;

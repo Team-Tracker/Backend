@@ -35,7 +35,7 @@ public class OldMainController {
         user.setUsername(username);
         user.setPassword(hashedPassword);
 
-        userRepository.save(user);
+        this.userRepository.save(user);
 
         return user.getId().toString();
     }
@@ -57,7 +57,7 @@ public class OldMainController {
         user.setUsername(username);
         user.setPassword(hashedPassword);
 
-        userRepository.save(user);
+        this.userRepository.save(user);
 
         return user.getId().toString();
     }
@@ -71,13 +71,13 @@ public class OldMainController {
      */
     @PatchMapping(path = "/password")
     public @ResponseBody String changePassword(@RequestParam Integer id, @RequestParam String hashedPassword) {
-        Optional<User> optionalUser = userRepository.findById(id);
+        Optional<User> optionalUser = this.userRepository.findById(id);
 
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
 
             user.setPassword(hashedPassword);
-            userRepository.save(user);
+            this.userRepository.save(user);
 
             return user.getId().toString();
         } else {
@@ -95,7 +95,7 @@ public class OldMainController {
      */
     @PatchMapping(path = "/passwordUnsafe")
     public @ResponseBody String changePasswordUnsafe(@RequestParam Integer id, @RequestParam String password) {
-        Optional<User> optionalUser = userRepository.findById(id);
+        Optional<User> optionalUser = this.userRepository.findById(id);
 
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
@@ -104,7 +104,7 @@ public class OldMainController {
 
             user.setPassword(hashedPassword);
 
-            userRepository.save(user);
+            this.userRepository.save(user);
 
             return user.getId().toString();
         } else {

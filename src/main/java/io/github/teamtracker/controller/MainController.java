@@ -24,7 +24,7 @@ public class MainController {
     // ! Every password is hashed using BCrypt
 
     /**
-     * Add a user to the database
+     * Add a user to the database.
      * 
      * @param username the username of the user
      * @param password the password of the user
@@ -39,17 +39,17 @@ public class MainController {
         user.setUsername(username);
         user.setPassword(hashedPassword);
 
-        if (userRepository.findByUsername(username) != null) {
+        if (this.userRepository.findByUsername(username) != null) {
             return "Username already exists";
         }
 
-        userRepository.save(user);
+        this.userRepository.save(user);
 
         return user.getId().toString();
     }
 
     /**
-     * Change the password of a user in the database
+     * Change the password of a user in the database.
      * 
      * @param id       the ID of the user
      * @param password the new plain text password of the user
@@ -57,7 +57,7 @@ public class MainController {
      */
     @PatchMapping(path = "/password")
     public @ResponseBody String changePassword(@RequestParam Integer id, @RequestParam String password) {
-        Optional<User> optionalUser = userRepository.findById(id);
+        Optional<User> optionalUser = this.userRepository.findById(id);
 
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
@@ -65,7 +65,7 @@ public class MainController {
             String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
             user.setPassword(hashedPassword);
-            userRepository.save(user);
+            this.userRepository.save(user);
 
             return user.getId().toString();
         } else {

@@ -31,7 +31,7 @@ public class AuthController {
      */
     @PostMapping(path = "/login")
     public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
-        User user = userRepository.findByUsername(username);
+        User user = this.userRepository.findByUsername(username);
 
         try {
             String jwt = LoginHelper.login(user, password);

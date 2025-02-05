@@ -21,7 +21,7 @@ public class CalenderController {
 
     @GetMapping(path = "/events")
     public @ResponseBody Iterable<Event> getEvents(@RequestParam Integer userId) {
-        Iterable<Event> events = calenderRepository.findByUserId(userId);
+        Iterable<Event> events = this.calenderRepository.findByUserId(userId);
 
         return events;
     }
@@ -39,7 +39,7 @@ public class CalenderController {
         event.setEventTime(time);
         event.setEventDuration(duration);
 
-        calenderRepository.save(event);
+        this.calenderRepository.save(event);
 
         return event.getId();
     }
@@ -48,7 +48,7 @@ public class CalenderController {
     public @ResponseBody Integer updateEvent(@RequestParam Integer eventId, @RequestParam String title,
             @RequestParam String description, @RequestParam String date, @RequestParam String time,
             @RequestParam String duration) {
-        Event event = calenderRepository.findById(eventId).get();
+        Event event = this.calenderRepository.findById(eventId).get();
 
         event.setEventName(title);
         event.setEventDescription(description);
@@ -56,14 +56,14 @@ public class CalenderController {
         event.setEventTime(time);
         event.setEventDuration(duration);
 
-        calenderRepository.save(event);
+        this.calenderRepository.save(event);
 
         return event.getId();
     }
 
     @PostMapping(path = "/delete")
     public @ResponseBody Integer deleteEvent(@RequestParam Integer eventId) {
-        calenderRepository.deleteById(eventId);
+        this.calenderRepository.deleteById(eventId);
 
         return eventId;
     }

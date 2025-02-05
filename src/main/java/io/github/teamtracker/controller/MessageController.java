@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MessageController {
 
     @Autowired
-    private WebSocketHandler messageWebSocketHandler;
+    private MessageRepository messageRepository;
 
     @Autowired
-    private MessageRepository messageRepository;
+    private WebSocketHandler messageWebSocketHandler;
 
     @PostMapping(path = "/send")
     public @ResponseBody String postMessage(@RequestParam Integer userId, @RequestParam Integer chatId,
@@ -41,7 +41,7 @@ public class MessageController {
 
     @GetMapping(path = "/messages")
     public @ResponseBody Iterable<Message> getMessages(@RequestParam Integer userId) {
-        Iterable<Message> messages = messageRepository.findByUserId(userId);
+        Iterable<Message> messages = this.messageRepository.findByUserId(userId);
 
         return messages;
     }

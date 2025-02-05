@@ -118,6 +118,8 @@ public class AdminController {
         this.teamRepository.deleteAll();
         this.userRepository.deleteAll();
 
+        this.defaults();
+
         return 0;
     }
 }
