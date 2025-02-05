@@ -116,6 +116,6 @@ public class AdminController {
         this.teamRepository.deleteAll();
         this.userRepository.deleteAll();
 
-        return this.resetDatabase();
+        return this.defaults();
     }
 }
