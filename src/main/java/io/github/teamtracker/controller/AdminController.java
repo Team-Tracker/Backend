@@ -44,8 +44,6 @@ public class AdminController {
 
     @GetMapping(path = "/defaults")
     public @ResponseBody int defaults() {
-        this.resetDatabase();
-
         // Create users
 
         User lorenz = new User();
@@ -118,8 +116,6 @@ public class AdminController {
         this.teamRepository.deleteAll();
         this.userRepository.deleteAll();
 
-        this.defaults();
-
-        return 0;
+        return this.resetDatabase();
     }
 }

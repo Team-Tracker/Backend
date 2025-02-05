@@ -1,5 +1,7 @@
 package io.github.teamtracker.model.user;
 
+import org.springframework.security.crypto.bcrypt.BCrypt;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -78,6 +80,8 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
+        this.password = hashedPassword;
     }
 }

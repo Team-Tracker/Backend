@@ -1,7 +1,6 @@
 package io.github.teamtracker.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,10 +33,8 @@ public class MainController {
     public @ResponseBody String addUser(@RequestParam String username, @RequestParam String password) {
         User user = new User();
 
-        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-
         user.setUsername(username);
-        user.setPassword(hashedPassword);
+        user.setPassword(password);
 
         if (this.userRepository.findByUsername(username) != null) {
             return "Username already exists";
@@ -62,9 +59,7 @@ public class MainController {
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
 
-            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-
-            user.setPassword(hashedPassword);
+            user.setPassword(password);
             this.userRepository.save(user);
 
             return user.getId().toString();
