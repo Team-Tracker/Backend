@@ -14,8 +14,8 @@ public class Team {
 
     private String name;
 
-    @Column(name = "creater_id")
-    private Integer createrId;
+    @Column(name = "creator_id")
+    private Integer creatorId;
 
     private String description;
 
@@ -46,12 +46,12 @@ public class Team {
         this.name = name;
     }
 
-    public Integer getCreaterId() {
-        return this.createrId;
+    public Integer getCreatorId() {
+        return this.creatorId;
     }
 
-    public void setCreaterId(Integer createrId) {
-        this.createrId = createrId;
+    public void setCreatorId(Integer creatorId) {
+        this.creatorId = creatorId;
     }
 
     public String getDescription() {
