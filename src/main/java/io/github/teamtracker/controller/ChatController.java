@@ -32,33 +32,6 @@ public class ChatController {
     @Autowired
     private WebSocketHandler messageWebSocketHandler;
 
-    @PostMapping(path = "/register")
-    public @ResponseBody String register(@RequestParam Integer userId, @RequestParam String sessionId)
-            throws Exception {
-        this.messageWebSocketHandler.registerUser(userId, sessionId);
-
-        return sessionId;
-    }
-
-    @PostMapping(path = "/create")
-    public @ResponseBody Integer createChat(@RequestParam Integer userId, @RequestParam Integer otherUserId) {
-        int id = ChatHelper.createChatGroup(userId, otherUserId, this.chatGroupRepository);
-
-        ChatHelper.createChat(userId, id, this.chatRepository);
-        ChatHelper.createChat(otherUserId, id, this.chatRepository);
-
-        return id;
-    }
-
-    @PostMapping(path = "/createSingle")
-    public @ResponseBody Integer createChat(@RequestParam Integer userId) {
-        int id = ChatHelper.createChatGroup(this.chatGroupRepository);
-
-        ChatHelper.createChat(userId, id, this.chatRepository);
-
-        return id;
-    }
-
     @GetMapping(path = "/chats")
     public @ResponseBody Iterable<ChatGroup> getChats(@RequestParam Integer userId) {
         Iterable<Chat> chats = this.chatRepository.findByUserId(userId);
@@ -70,5 +43,32 @@ public class ChatController {
         }
 
         return chatGroups;
+    }
+
+    @PostMapping(path = "/createSingle")
+    public @ResponseBody Integer createChat(@RequestParam Integer userId) {
+        int id = ChatHelper.createChatGroup(this.chatGroupRepository);
+
+        ChatHelper.createChat(userId, id, this.chatRepository);
+
+        return id;
+    }
+
+    @PostMapping(path = "/createMulti")
+    public @ResponseBody Integer createChat(@RequestParam Integer userId, @RequestParam Integer otherUserId) {
+        int id = ChatHelper.createChatGroup(userId, otherUserId, this.chatGroupRepository);
+
+        ChatHelper.createChat(userId, id, this.chatRepository);
+        ChatHelper.createChat(otherUserId, id, this.chatRepository);
+
+        return id;
+    }
+
+    @PostMapping(path = "/register")
+    public @ResponseBody String register(@RequestParam Integer userId, @RequestParam String sessionId)
+            throws Exception {
+        this.messageWebSocketHandler.registerUser(userId, sessionId);
+
+        return sessionId;
     }
 }

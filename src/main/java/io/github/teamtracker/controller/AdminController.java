@@ -42,6 +42,32 @@ public class AdminController {
     @Autowired
     private UserRepository userRepository;
 
+    @GetMapping(path = "/zero")
+    public @ResponseBody int zero() {
+        this.calenderRepository.deleteAll();
+        this.chatGroupRepository.deleteAll();
+        this.chatRepository.deleteAll();
+        this.memberRepository.deleteAll();
+        this.messageRepository.deleteAll();
+        this.teamRepository.deleteAll();
+        this.userRepository.deleteAll();
+
+        return 0;
+    }
+
+    @GetMapping(path = "/reset")
+    public @ResponseBody int resetDatabase() {
+        this.calenderRepository.deleteAll();
+        this.chatGroupRepository.deleteAll();
+        this.chatRepository.deleteAll();
+        this.memberRepository.deleteAll();
+        this.messageRepository.deleteAll();
+        this.teamRepository.deleteAll();
+        this.userRepository.deleteAll();
+
+        return this.defaults();
+    }
+
     @GetMapping(path = "/defaults")
     public @ResponseBody int defaults() {
         // Create users
@@ -91,31 +117,5 @@ public class AdminController {
         ChatHelper.createChat(stefan.getId(), id, this.chatRepository);
 
         return 0;
-    }
-
-    @GetMapping(path = "/zero")
-    public @ResponseBody int zero() {
-        this.calenderRepository.deleteAll();
-        this.chatGroupRepository.deleteAll();
-        this.chatRepository.deleteAll();
-        this.memberRepository.deleteAll();
-        this.messageRepository.deleteAll();
-        this.teamRepository.deleteAll();
-        this.userRepository.deleteAll();
-
-        return 0;
-    }
-
-    @GetMapping(path = "/reset")
-    public @ResponseBody int resetDatabase() {
-        this.calenderRepository.deleteAll();
-        this.chatGroupRepository.deleteAll();
-        this.chatRepository.deleteAll();
-        this.memberRepository.deleteAll();
-        this.messageRepository.deleteAll();
-        this.teamRepository.deleteAll();
-        this.userRepository.deleteAll();
-
-        return this.defaults();
     }
 }

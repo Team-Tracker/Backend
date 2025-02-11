@@ -23,6 +23,25 @@ public class MessageController {
     @Autowired
     private WebSocketHandler messageWebSocketHandler;
 
+    @GetMapping(path = "/")
+    public @ResponseBody Iterable<Message> getMessages() {
+        return this.messageRepository.findAll();
+    }
+
+    @GetMapping(path = "/messages")
+    public @ResponseBody Iterable<Message> getUserMessages(@RequestParam Integer userId) {
+        Iterable<Message> messages = this.messageRepository.findByUserId(userId);
+
+        return messages;
+    }
+
+    @GetMapping(path = "/messagesChat")
+    public @ResponseBody Iterable<Message> getChatMessages(@RequestParam Integer chatGroupId) {
+        Iterable<Message> messages = this.messageRepository.findByChatGroupId(chatGroupId);
+
+        return messages;
+    }
+
     @PostMapping(path = "/send")
     public @ResponseBody String postMessage(@RequestParam Integer userId, @RequestParam Integer chatId,
             @RequestParam String text) throws Exception {
@@ -37,12 +56,5 @@ public class MessageController {
         this.messageWebSocketHandler.broadcastMessage(message);
 
         return message.getId().toString();
-    }
-
-    @GetMapping(path = "/messages")
-    public @ResponseBody Iterable<Message> getMessages(@RequestParam Integer userId) {
-        Iterable<Message> messages = this.messageRepository.findByUserId(userId);
-
-        return messages;
     }
 }

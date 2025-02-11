@@ -21,19 +21,6 @@ public class UserController {
     private UserRepository userRepository;
 
     /**
-     * Delete a user from the database.
-     * 
-     * @param id the ID of the user to be deleted
-     * @return the ID of the deleted user
-     */
-    @DeleteMapping(path = "/delete")
-    public @ResponseBody String deleteUser(@RequestParam Integer id) {
-        this.userRepository.deleteById(id);
-
-        return id.toString();
-    }
-
-    /**
      * Get all users from the database.
      * 
      * @return an iterable of all users
@@ -97,5 +84,18 @@ public class UserController {
         }
 
         return id;
+    }
+
+    /**
+     * Delete a user from the database.
+     * 
+     * @param id the ID of the user to be deleted
+     * @return the ID of the deleted user
+     */
+    @DeleteMapping(path = "/delete")
+    public @ResponseBody String deleteUser(@RequestParam Integer id) {
+        this.userRepository.deleteById(id);
+
+        return id.toString();
     }
 }
