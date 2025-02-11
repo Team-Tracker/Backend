@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import io.github.teamtracker.model.user.User;
 import io.github.teamtracker.repository.UserRepository;
+import io.github.teamtracker.utility.UserHelper;
 
 @Controller
 @RequestMapping(path = "/user")
@@ -27,7 +28,19 @@ public class UserController {
      */
     @GetMapping(path = "/all")
     public @ResponseBody Iterable<User> getAllUsers() {
-        return this.userRepository.findAll();
+        // return this.userRepository.findAll();
+
+        Iterable<User> users = this.userRepository.findAll();
+
+        for (User user : users) {
+            if (user.isDeleted()) {
+                ((Collection<User>) users).remove(user);
+
+                break;
+            }
+        }
+
+        return users;
     }
 
     /**
@@ -42,6 +55,14 @@ public class UserController {
 
         for (User user : users) {
             if (user.getId() == id) {
+                ((Collection<User>) users).remove(user);
+
+                break;
+            }
+        }
+
+        for (User user : users) {
+            if (user.isDeleted()) {
                 ((Collection<User>) users).remove(user);
 
                 break;
@@ -86,6 +107,11 @@ public class UserController {
         return id;
     }
 
+    @GetMapping(path = "/exists")
+    public @ResponseBody Boolean getUser(@RequestParam Integer id) {
+        return UserHelper.userExists(id, this.userRepository);
+    }
+
     /**
      * Delete a user from the database.
      * 
@@ -94,7 +120,21 @@ public class UserController {
      */
     @DeleteMapping(path = "/delete")
     public @ResponseBody String deleteUser(@RequestParam Integer id) {
-        this.userRepository.deleteById(id);
+        // this.userRepository.deleteById(id);
+
+        User user = this.userRepository.findById(id).get();
+
+        if (user == null) {
+            return null;
+        }
+
+        if (user.isDeleted()) {
+            return null;
+        }
+
+        user.delete();
+
+        this.userRepository.save(user);
 
         return id.toString();
     }

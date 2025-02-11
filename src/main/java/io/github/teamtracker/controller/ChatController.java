@@ -45,7 +45,7 @@ public class ChatController {
         return chatGroups;
     }
 
-    @PostMapping(path = "/createSingle")
+    @PostMapping(path = "/createMono")
     public @ResponseBody Integer createChat(@RequestParam Integer userId) {
         int id = ChatHelper.createChatGroup(this.chatGroupRepository);
 
@@ -54,7 +54,7 @@ public class ChatController {
         return id;
     }
 
-    @PostMapping(path = "/createMulti")
+    @PostMapping(path = "/createDuo")
     public @ResponseBody Integer createChat(@RequestParam Integer userId, @RequestParam Integer otherUserId) {
         int id = ChatHelper.createChatGroup(userId, otherUserId, this.chatGroupRepository);
 

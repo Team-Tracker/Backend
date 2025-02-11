@@ -31,6 +31,8 @@ public class User {
     // Password information
     private String password;
 
+    private boolean deleted;
+
     public Integer getId() {
         return this.id;
     }
@@ -83,5 +85,13 @@ public class User {
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
         this.password = hashedPassword;
+    }
+
+    public void delete() {
+        this.deleted = true;
+    }
+
+    public boolean isDeleted() {
+        return this.deleted;
     }
 }

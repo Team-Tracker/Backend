@@ -13,6 +13,10 @@ public class LoginHelper {
             throw new LoginException("User not found");
         }
 
+        if (user.isDeleted()) {
+            throw new LoginException("User is deleted");
+        }
+
         if (BCrypt.checkpw(password, user.getPassword())) {
             int id = user.getId();
 

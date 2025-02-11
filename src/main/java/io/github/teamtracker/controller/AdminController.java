@@ -57,13 +57,7 @@ public class AdminController {
 
     @GetMapping(path = "/reset")
     public @ResponseBody int resetDatabase() {
-        this.calenderRepository.deleteAll();
-        this.chatGroupRepository.deleteAll();
-        this.chatRepository.deleteAll();
-        this.memberRepository.deleteAll();
-        this.messageRepository.deleteAll();
-        this.teamRepository.deleteAll();
-        this.userRepository.deleteAll();
+        this.zero();
 
         return this.defaults();
     }

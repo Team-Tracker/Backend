@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import io.github.teamtracker.model.chat.Message;
 import io.github.teamtracker.repository.MessageRepository;
 import io.github.teamtracker.socket.WebSocket.WebSocketHandler;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -56,5 +58,12 @@ public class MessageController {
         this.messageWebSocketHandler.broadcastMessage(message);
 
         return message.getId().toString();
+    }
+
+    @DeleteMapping(path = "/delete")
+    public @ResponseBody String deleteMessage(@RequestParam Integer id) {
+        this.messageRepository.deleteById(id);
+
+        return id.toString();
     }
 }

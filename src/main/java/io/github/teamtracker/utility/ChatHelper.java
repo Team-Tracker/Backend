@@ -7,14 +7,14 @@ import io.github.teamtracker.repository.ChatRepository;
 
 public class ChatHelper {
 
-    private static final String CHAT_GROUP_NAME_SINGLE = "Chat";
+    private static final String CHAT_GROUP_NAME_MONO = "Chat";
 
     private static final String CHAT_GROUP_NAME = "Chat between %d and %d";
 
     public static Integer createChatGroup(ChatGroupRepository chatGroupRepository) {
         ChatGroup chatGroup = new ChatGroup();
 
-        chatGroup.setName(ChatHelper.CHAT_GROUP_NAME_SINGLE);
+        chatGroup.setName(ChatHelper.CHAT_GROUP_NAME_MONO);
 
         chatGroupRepository.save(chatGroup);
 
