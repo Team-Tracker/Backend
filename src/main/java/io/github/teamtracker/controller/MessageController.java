@@ -43,12 +43,12 @@ public class MessageController {
     }
 
     @PostMapping(path = "/send")
-    public @ResponseBody String postMessage(@RequestParam Integer userId, @RequestParam Integer chatId,
+    public @ResponseBody String postMessage(@RequestParam Integer userId, @RequestParam Integer chatGroupId,
             @RequestParam String text) throws Exception {
         Message message = new Message();
 
         message.setUserid(userId);
-        message.setChatGroupId(chatId);
+        message.setChatGroupId(chatGroupId);
         message.setText(text);
 
         this.messageRepository.save(message);

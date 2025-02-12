@@ -88,7 +88,7 @@ public class UserController {
      * @param id the ID of the user
      * @return the username of the user, or null if not found
      */
-    @GetMapping(path = "/resolve")
+    @GetMapping(path = "/resolveUsername")
     public @ResponseBody String getUsername(@RequestParam Integer id) {
         String username = this.userRepository.resolveUsername(id);
 
@@ -106,7 +106,7 @@ public class UserController {
      * @return the ID of the user, or -1 if not found
      * 
      */
-    @GetMapping(path = "/resolve")
+    @GetMapping(path = "/resolveId")
     public @ResponseBody Integer getUserId(@RequestParam String username) {
         Integer id = this.userRepository.resolveId(username);
 
