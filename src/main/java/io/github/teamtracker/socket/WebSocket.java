@@ -25,7 +25,7 @@ import io.github.teamtracker.repository.ChatRepository;
 public class WebSocket implements WebSocketConfigurer {
 
     @Override
-    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+    public void registerWebSocketHandlers(@SuppressWarnings("null") WebSocketHandlerRegistry registry) {
         registry.addHandler(webSocketHandler(), "/ws").setAllowedOrigins("*");
     }
 
@@ -50,7 +50,7 @@ public class WebSocket implements WebSocketConfigurer {
          * Add the WebSocket session to the list of active sessions.
          */
         @Override
-        public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+        public void afterConnectionEstablished(@SuppressWarnings("null") WebSocketSession session) throws Exception {
             sessions.add(session);
 
             String message = "{\"sessionId\": \"" + session.getId() + "\"}";
@@ -65,6 +65,7 @@ public class WebSocket implements WebSocketConfigurer {
         /**
          * Remove the WebSocket session from the list of active sessions.
          */
+        @SuppressWarnings("null")
         @Override
         public void afterConnectionClosed(WebSocketSession session,
                 CloseStatus status) throws Exception {

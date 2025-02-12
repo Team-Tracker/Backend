@@ -18,6 +18,11 @@ public class CalenderController {
     @Autowired
     private CalenderRepository calenderRepository;
 
+    @GetMapping(path = "/")
+    public @ResponseBody Iterable<Event> getEvents() {
+        return this.calenderRepository.findAll();
+    }
+
     @GetMapping(path = "/events")
     public @ResponseBody Iterable<Event> getEvents(@RequestParam Integer userId) {
         Iterable<Event> events = this.calenderRepository.findByUserId(userId);

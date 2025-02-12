@@ -10,6 +10,7 @@ import io.github.teamtracker.repository.MemberRepository;
 @RequestMapping(path = "/member")
 public class MemberController {
 
+    @SuppressWarnings("unused")
     @Autowired
     private MemberRepository memberRepository;
 }

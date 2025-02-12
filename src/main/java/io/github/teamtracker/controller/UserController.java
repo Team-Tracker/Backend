@@ -26,6 +26,16 @@ public class UserController {
      * 
      * @return an iterable of all users
      */
+    @GetMapping(path = "/")
+    public @ResponseBody Iterable<User> getUsers() {
+        return this.userRepository.findAll();
+    }
+
+    /**
+     * Get all users from the database except deleted ones.
+     * 
+     * @return an iterable of all users
+     */
     @GetMapping(path = "/all")
     public @ResponseBody Iterable<User> getAllUsers() {
         // return this.userRepository.findAll();
@@ -50,7 +60,7 @@ public class UserController {
      * @return an iterable of all users except the one with the given ID
      */
     @GetMapping(path = "/others")
-    public @ResponseBody Iterable<User> getOtherUsers(@RequestParam Integer id) {
+    public @ResponseBody Iterable<User> getOthers(@RequestParam Integer id) {
         Iterable<User> users = this.userRepository.findAll();
 
         for (User user : users) {
@@ -78,7 +88,7 @@ public class UserController {
      * @param id the ID of the user
      * @return the username of the user, or null if not found
      */
-    @GetMapping(path = "/resolveUsername")
+    @GetMapping(path = "/resolve")
     public @ResponseBody String getUsername(@RequestParam Integer id) {
         String username = this.userRepository.resolveUsername(id);
 
@@ -96,7 +106,7 @@ public class UserController {
      * @return the ID of the user, or -1 if not found
      * 
      */
-    @GetMapping(path = "/resolveId")
+    @GetMapping(path = "/resolve")
     public @ResponseBody Integer getUserId(@RequestParam String username) {
         Integer id = this.userRepository.resolveId(username);
 

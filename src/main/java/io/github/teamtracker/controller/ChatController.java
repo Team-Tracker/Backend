@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +31,11 @@ public class ChatController {
 
     @Autowired
     private WebSocketHandler messageWebSocketHandler;
+
+    @GetMapping(path = "/")
+    public @ResponseBody Iterable<ChatGroup> getChats() {
+        return this.chatGroupRepository.findAll();
+    }
 
     @GetMapping(path = "/chats")
     public @ResponseBody Iterable<ChatGroup> getChats(@RequestParam Integer userId) {
@@ -69,5 +75,16 @@ public class ChatController {
         this.messageWebSocketHandler.registerUser(userId, sessionId);
 
         return sessionId;
+    }
+
+    @PatchMapping(path = "/rename")
+    public @ResponseBody String rename(@RequestParam Integer chatGroupId, @RequestParam String name) {
+        ChatGroup chatGroup = this.chatGroupRepository.findById(chatGroupId).get();
+
+        chatGroup.setName(name);
+
+        this.chatGroupRepository.save(chatGroup);
+
+        return name;
     }
 }
