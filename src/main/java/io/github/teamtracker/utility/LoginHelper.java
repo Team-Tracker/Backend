@@ -20,7 +20,7 @@ public class LoginHelper {
         if (BCrypt.checkpw(password, user.getPassword())) {
             int id = user.getId();
 
-            int zero = 1;
+            int zero = 0;
 
             if (zero == 0) {
                 return "" + id;
