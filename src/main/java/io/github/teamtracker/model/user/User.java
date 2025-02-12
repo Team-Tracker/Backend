@@ -87,11 +87,11 @@ public class User {
         this.password = hashedPassword;
     }
 
-    public void delete() {
-        this.deleted = true;
-    }
-
     public boolean isDeleted() {
         return this.deleted;
+    }
+
+    public void delete() {
+        this.deleted = true;
     }
 }
