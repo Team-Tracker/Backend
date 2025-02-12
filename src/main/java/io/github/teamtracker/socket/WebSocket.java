@@ -1,25 +1,24 @@
 package io.github.teamtracker.socket;
 
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+import org.springframework.web.socket.CloseStatus;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import io.github.teamtracker.repository.ChatRepository;
 import io.github.teamtracker.Application;
 import io.github.teamtracker.model.chat.Message;
-
-import org.springframework.web.socket.WebSocketSession;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.web.socket.CloseStatus;
-import org.springframework.web.socket.TextMessage;
-import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
+import io.github.teamtracker.repository.ChatRepository;
 
 @Configuration
 @EnableWebSocket

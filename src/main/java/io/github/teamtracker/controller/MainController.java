@@ -1,5 +1,7 @@
 package io.github.teamtracker.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -10,8 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import io.github.teamtracker.model.user.User;
 import io.github.teamtracker.repository.UserRepository;
-
-import java.util.Optional;
 
 @Controller
 @RequestMapping(path = "/main")

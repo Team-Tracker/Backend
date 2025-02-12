@@ -1,6 +1,7 @@
 package io.github.teamtracker.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,8 +17,6 @@ import io.github.teamtracker.repository.ChatGroupRepository;
 import io.github.teamtracker.repository.ChatRepository;
 import io.github.teamtracker.socket.WebSocket.WebSocketHandler;
 import io.github.teamtracker.utility.ChatHelper;
-
-import java.util.List;
 
 @Controller
 @RequestMapping(path = "/chat")

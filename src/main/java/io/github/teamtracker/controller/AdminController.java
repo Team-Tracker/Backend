@@ -2,6 +2,7 @@ package io.github.teamtracker.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -14,8 +15,6 @@ import io.github.teamtracker.repository.MessageRepository;
 import io.github.teamtracker.repository.TeamRepository;
 import io.github.teamtracker.repository.UserRepository;
 import io.github.teamtracker.utility.ChatHelper;
-
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequestMapping(path = "/admin")

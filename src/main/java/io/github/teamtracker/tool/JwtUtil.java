@@ -1,10 +1,11 @@
 package io.github.teamtracker.tool;
 
+import java.security.Key;
+import java.util.Date;
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-import java.security.Key;
-import java.util.Date;
 
 public class JwtUtil {
 
