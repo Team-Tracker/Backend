@@ -24,8 +24,12 @@ public class TeamService {
         this.memberRepository = memberRepository;
     }
 
-    public List<Team> getAllTeams() {
+    public Iterable<Team> getAllTeams() {
         return this.teamRepository.findAll();
+    }
+
+    public Iterable<Team> getTeams(Integer userId) {
+        return null;
     }
 
     public Optional<Team> getTeamById(Integer id) {
@@ -40,21 +44,29 @@ public class TeamService {
         this.teamRepository.deleteById(id);
     }
 
-    public Member addMemberToTeam(Integer teamId, Member member) {
-        Team team = this.teamRepository.findById(teamId).orElseThrow(() -> new TeamException("Team not found"));
+    public Member newTeam(Integer teamId, Integer userId) {
+        this.teamRepository.findById(teamId).orElseThrow(() -> new TeamException("Team not found"));
 
-        team.addMember(member);
+        Member member = new Member(userId, teamId, "creator");
 
         return this.memberRepository.save(member);
     }
 
-    public void removeMemberFromTeam(Integer teamId, Integer memberId) {
-        Member member = this.memberRepository.findById(memberId)
-                .orElseThrow(() -> new TeamException("Member not found"));
 
-        Team team = this.teamRepository.findById(teamId).orElseThrow(() -> new TeamException("Team not found"));
+    public Member addUserToTeam(Integer teamId, Integer userId) {
+        this.teamRepository.findById(teamId).orElseThrow(() -> new TeamException("Team not found"));
 
-        team.removeMember(member);
+        Member member = new Member(userId, teamId, "member");
+
+        return this.memberRepository.save(member);
+    }
+
+    public void removeUserFromTeam(Integer teamId, Integer userId) {
+        Member member = this.memberRepository.findByUserIdAndTeamId(userId, teamId);
+
+        if (member == null) {
+            throw new TeamException("Member not found");
+        }
 
         this.memberRepository.delete(member);
     }

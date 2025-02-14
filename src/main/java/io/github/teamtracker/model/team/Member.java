@@ -5,10 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
+// Combination of user_id and team_id must be unique
+@Table(name = "member", uniqueConstraints = @UniqueConstraint(columnNames = { "user_id", "team_id" }))
 public class Member {
 
     @Id
@@ -18,21 +20,20 @@ public class Member {
     @Column(name = "user_id")
     private Integer userId;
 
-    private String role;
+    @Column(name = "team_id")
+    private Integer teamId;
 
-    @ManyToOne
-    @JoinColumn(name = "team_id")
-    private Team team;
+    private String role;
 
     public Member(Integer userId, String role) {
         this.userId = userId;
         this.role = role;
     }
 
-    public Member(Integer userId, String role, Team team) {
+    public Member(Integer userId, Integer teamId, String role) {
         this.userId = userId;
+        this.teamId = teamId;
         this.role = role;
-        this.team = team;
     }
 
     public Integer getId() {
@@ -47,12 +48,12 @@ public class Member {
         this.userId = userId;
     }
 
-    public Team getTeam() {
-        return this.team;
+    public Integer getTeam() {
+        return this.teamId;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setTeam(Integer teamId) {
+        this.teamId = teamId;
     }
 
     public String getRole() {
