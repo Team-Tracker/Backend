@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import io.github.teamtracker.misc.WordFilter;
 import io.github.teamtracker.model.misc.Wordlist;
 import io.github.teamtracker.repository.WordlistRepository;
 
@@ -26,6 +27,8 @@ public class WordlistController {
     @PostMapping(path = "/add")
     public @ResponseBody Integer addWord(@RequestParam String word) {
         Wordlist newWord = new Wordlist(word);
+
+        WordFilter.addWord(word);
 
         this.wordlistRepository.save(newWord);
 
