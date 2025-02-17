@@ -25,6 +25,10 @@ public class Member {
 
     private String role;
 
+    public Member() {
+
+    }
+
     public Member(Integer userId, String role) {
         this.userId = userId;
         this.role = role;

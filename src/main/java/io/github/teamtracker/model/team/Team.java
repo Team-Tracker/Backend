@@ -1,5 +1,6 @@
 package io.github.teamtracker.model.team;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,12 +13,23 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column(name = "user_id")
+    private Integer creatorId;
+
     private String name;
 
     private String description;
 
     public Integer getId() {
         return this.id;
+    }
+
+    public Integer getCreatorId() {
+        return this.creatorId;
+    }
+
+    public void setCreatorId(Integer creatorId) {
+        this.creatorId = creatorId;
     }
 
     public String getName() {

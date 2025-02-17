@@ -7,9 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import io.github.teamtracker.repository.MemberRepository;
 
 @Controller
-@RequestMapping(path = "/member")
-public class MemberController {
+@RequestMapping(path = "/memberOld")
+public class MemberControllerOld {
 
+    @SuppressWarnings("unused")
     @Autowired
     private MemberRepository memberRepository;
 }

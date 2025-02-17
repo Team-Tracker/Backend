@@ -52,19 +52,26 @@ public class TeamService {
     }
 
     public Team createTeam(Team team) {
-        return this.teamRepository.save(team);
+        // ! Check if creatorId User exists
+        Team newTeam = new Team();
+
+        Integer creatorId = team.getCreatorId();
+
+        newTeam.setCreatorId(creatorId);
+        newTeam.setName(team.getName());
+        newTeam.setDescription(team.getDescription());
+
+        this.teamRepository.save(newTeam);
+
+        Integer teamId = newTeam.getId();
+
+        this.newTeam(teamId, creatorId);
+
+        return this.teamRepository.save(newTeam);
     }
 
     public void deleteTeam(Integer id) {
         this.teamRepository.deleteById(id);
-    }
-
-    public Member newTeam(Integer teamId, Integer userId) {
-        this.teamRepository.findById(teamId).orElseThrow(() -> new TeamException("Team not found"));
-
-        Member member = new Member(userId, teamId, "creator");
-
-        return this.memberRepository.save(member);
     }
 
     public Member addUserToTeam(Integer teamId, Integer userId) {
@@ -87,5 +94,13 @@ public class TeamService {
         }
 
         this.memberRepository.delete(member);
+    }
+
+    private Member newTeam(Integer teamId, Integer userId) {
+        this.teamRepository.findById(teamId).orElseThrow(() -> new TeamException("Team not found"));
+
+        Member member = new Member(userId, teamId, "admin");
+
+        return this.memberRepository.save(member);
     }
 }

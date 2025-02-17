@@ -53,7 +53,7 @@ public class TeamController {
         return this.teamService.addUserToTeam(teamId, userId);
     }
 
-    @DeleteMapping("/{teamId}/{memberId}")
+    @DeleteMapping("/{teamId}/{userId}")
     public void removeUserFromTeam(@PathVariable Integer teamId, @PathVariable Integer userId) {
         this.teamService.removeUserFromTeam(teamId, userId);
     }
