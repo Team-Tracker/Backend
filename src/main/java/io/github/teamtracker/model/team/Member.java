@@ -48,11 +48,11 @@ public class Member {
         this.userId = userId;
     }
 
-    public Integer getTeam() {
+    public Integer getTeamId() {
         return this.teamId;
     }
 
-    public void setTeam(Integer teamId) {
+    public void setTeamId(Integer teamId) {
         this.teamId = teamId;
     }
 

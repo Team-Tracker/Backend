@@ -1,6 +1,5 @@
 package io.github.teamtracker.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -11,6 +10,9 @@ import io.github.teamtracker.model.team.Member;
 import io.github.teamtracker.model.team.Team;
 import io.github.teamtracker.repository.MemberRepository;
 import io.github.teamtracker.repository.TeamRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -28,8 +30,22 @@ public class TeamService {
         return this.teamRepository.findAll();
     }
 
-    public Iterable<Team> getTeams(Integer userId) {
-        return null;
+    public List<Team> getTeams(Integer userId) {
+        List<Team> teams = new ArrayList<>();
+
+        Iterable<Member> members = this.memberRepository.findByUserId(userId);
+
+        for (Member member : members) {
+            Integer teamId = member.getTeamId();
+
+            Optional<Team> team = this.teamRepository.findById(teamId);
+
+            if (team != null) {
+                teams.add(team.get());
+            }
+        }
+
+        return teams;
     }
 
     public Optional<Team> getTeamById(Integer id) {
@@ -52,9 +68,12 @@ public class TeamService {
         return this.memberRepository.save(member);
     }
 
-
     public Member addUserToTeam(Integer teamId, Integer userId) {
         this.teamRepository.findById(teamId).orElseThrow(() -> new TeamException("Team not found"));
+
+        if (this.memberRepository.findByUserIdAndTeamId(userId, teamId) != null) {
+            throw new TeamException("User already in team");
+        }
 
         Member member = new Member(userId, teamId, "member");
 
