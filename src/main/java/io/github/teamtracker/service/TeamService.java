@@ -1,5 +1,7 @@
 package io.github.teamtracker.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -10,9 +12,6 @@ import io.github.teamtracker.model.team.Member;
 import io.github.teamtracker.model.team.Team;
 import io.github.teamtracker.repository.MemberRepository;
 import io.github.teamtracker.repository.TeamRepository;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @Transactional
