@@ -83,6 +83,13 @@ public class ChatController {
         return id;
     }
 
+    @PostMapping(path = "/add")
+    public @ResponseBody Integer add(@RequestParam Integer chatGroupId, @RequestParam Integer userId) {
+        int id = ChatHelper.createChat(userId, chatGroupId, this.chatRepository);
+
+        return id;
+    }
+
     @PostMapping(path = "/register")
     public @ResponseBody String register(@RequestParam Integer userId, @RequestParam String sessionId)
             throws Exception {
