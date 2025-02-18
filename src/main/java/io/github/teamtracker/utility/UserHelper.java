@@ -1,5 +1,8 @@
 package io.github.teamtracker.utility;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.github.teamtracker.model.user.User;
 import io.github.teamtracker.repository.UserRepository;
 
@@ -17,5 +20,19 @@ public class UserHelper {
         }
 
         return true;
+    }
+
+    public static List<User> findActiveUsers(UserRepository userRepository) {
+        Iterable<User> users = userRepository.findAll();
+
+        List<User> activeUsers = new ArrayList<>();
+
+        for (User user : users) {
+            if (!user.isDeleted()) {
+                activeUsers.add(user);
+            }
+        }
+
+        return activeUsers;
     }
 }

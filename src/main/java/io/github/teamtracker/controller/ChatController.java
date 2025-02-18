@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import io.github.teamtracker.model.chat.Chat;
 import io.github.teamtracker.model.chat.ChatGroup;
+import io.github.teamtracker.model.team.TeamChat;
 import io.github.teamtracker.repository.ChatGroupRepository;
 import io.github.teamtracker.repository.ChatRepository;
+import io.github.teamtracker.repository.TeamChatRepository;
 import io.github.teamtracker.socket.WebSocket.WebSocketHandler;
 import io.github.teamtracker.utility.ChatHelper;
 
@@ -30,6 +32,9 @@ public class ChatController {
     private ChatRepository chatRepository;
 
     @Autowired
+    private TeamChatRepository teamChatRepository;
+
+    @Autowired
     private WebSocketHandler messageWebSocketHandler;
 
     @GetMapping(path = "/")
@@ -40,11 +45,20 @@ public class ChatController {
     @GetMapping(path = "/chats")
     public @ResponseBody Iterable<ChatGroup> getChats(@RequestParam Integer userId) {
         Iterable<Chat> chats = this.chatRepository.findByUserId(userId);
+        Iterable<TeamChat> teamChats = this.teamChatRepository.findAll();
 
         List<ChatGroup> chatGroups = new ArrayList<>();
 
         for (Chat chat : chats) {
             chatGroups.add(this.chatGroupRepository.findById(chat.getChatGroupId()).get());
+        }
+
+        for (TeamChat teamChat : teamChats) {
+            for (ChatGroup chatGroup : chatGroups) {
+                if (teamChat.getChatGroupId() == chatGroup.getId()) {
+                    chatGroups.remove(chatGroups.indexOf(chatGroup));
+                }
+            }
         }
 
         return chatGroups;

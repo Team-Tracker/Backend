@@ -10,8 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import io.github.teamtracker.exception.TeamException;
 import io.github.teamtracker.model.team.Member;
 import io.github.teamtracker.model.team.Team;
+import io.github.teamtracker.model.team.TeamChat;
+import io.github.teamtracker.repository.ChatGroupRepository;
 import io.github.teamtracker.repository.MemberRepository;
+import io.github.teamtracker.repository.TeamChatRepository;
 import io.github.teamtracker.repository.TeamRepository;
+import io.github.teamtracker.utility.ChatHelper;
 
 @Service
 @Transactional
@@ -20,9 +24,15 @@ public class TeamService {
     private final TeamRepository teamRepository;
     private final MemberRepository memberRepository;
 
-    public TeamService(TeamRepository teamRepository, MemberRepository memberRepository) {
+    private final TeamChatRepository teamChatRepository;
+    private final ChatGroupRepository chatGroupRepository;
+
+    public TeamService(TeamRepository teamRepository, MemberRepository memberRepository,
+            TeamChatRepository teamChatRepository, ChatGroupRepository chatGroupRepository) {
         this.teamRepository = teamRepository;
         this.memberRepository = memberRepository;
+        this.teamChatRepository = teamChatRepository;
+        this.chatGroupRepository = chatGroupRepository;
     }
 
     public Iterable<Team> getAllTeams() {
@@ -66,6 +76,7 @@ public class TeamService {
         Integer teamId = newTeam.getId();
 
         this.newTeam(teamId, creatorId);
+        this.newChat(teamId);
 
         return this.teamRepository.save(newTeam);
     }
@@ -73,7 +84,7 @@ public class TeamService {
     public void deleteTeam(Integer id) {
         this.teamRepository.deleteById(id);
 
-        this.deleteTeamMembers(id);
+        this.removeTeam(id);
     }
 
     public Member addUserToTeam(Integer teamId, Integer userId) {
@@ -106,7 +117,15 @@ public class TeamService {
         return this.memberRepository.save(member);
     }
 
-    private void deleteTeamMembers(Integer teamId) {
+    private TeamChat newChat(Integer teamId) {
+        Integer chatGroupId = ChatHelper.createChatGroup(chatGroupRepository);
+
+        TeamChat teamChat = new TeamChat(teamId, chatGroupId);
+
+        return this.teamChatRepository.save(teamChat);
+    }
+
+    private void removeTeam(Integer teamId) {
         Iterable<Member> members = this.memberRepository.findByTeamId(teamId);
 
         for (Member member : members) {

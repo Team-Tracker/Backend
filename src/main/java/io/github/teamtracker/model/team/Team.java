@@ -13,7 +13,7 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "user_id")
+    @Column(name = "creator_id")
     private Integer creatorId;
 
     private String name;

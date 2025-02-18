@@ -1,6 +1,6 @@
 package io.github.teamtracker.controller;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,17 +40,7 @@ public class UserController {
     public @ResponseBody Iterable<User> getAllUsers() {
         // return this.userRepository.findAll();
 
-        Iterable<User> users = this.userRepository.findAll();
-
-        for (User user : users) {
-            if (user.isDeleted()) {
-                ((Collection<User>) users).remove(user);
-
-                break;
-            }
-        }
-
-        return users;
+        return UserHelper.findActiveUsers(userRepository);
     }
 
     /**
@@ -61,19 +51,11 @@ public class UserController {
      */
     @GetMapping(path = "/others")
     public @ResponseBody Iterable<User> getOthers(@RequestParam Integer id) {
-        Iterable<User> users = this.userRepository.findAll();
+        List<User> users = UserHelper.findActiveUsers(userRepository);
 
         for (User user : users) {
             if (user.getId() == id) {
-                ((Collection<User>) users).remove(user);
-
-                break;
-            }
-        }
-
-        for (User user : users) {
-            if (user.isDeleted()) {
-                ((Collection<User>) users).remove(user);
+                users.remove(user);
 
                 break;
             }

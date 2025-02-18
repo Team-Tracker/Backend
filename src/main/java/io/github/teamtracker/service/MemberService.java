@@ -3,18 +3,26 @@ package io.github.teamtracker.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import io.github.teamtracker.model.team.Member;
 import io.github.teamtracker.repository.MemberRepository;
-import io.github.teamtracker.repository.TeamRepository;
 
 @Service
 @Transactional
 public class MemberService {
 
-    private final TeamRepository teamRepository;
     private final MemberRepository memberRepository;
 
-    public MemberService(TeamRepository teamRepository, MemberRepository memberRepository) {
-        this.teamRepository = teamRepository;
+    public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
+    }
+
+    public Iterable<Member> getAllMembers() {
+        return this.memberRepository.findAll();
+    }
+
+    public Iterable<Member> getMembers(Integer teamId) {
+        Iterable<Member> members = this.memberRepository.findByTeamId(teamId);
+
+        return members;
     }
 }
