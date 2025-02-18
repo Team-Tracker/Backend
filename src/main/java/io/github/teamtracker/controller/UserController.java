@@ -54,6 +54,7 @@ public class UserController {
         List<User> users = UserHelper.findActiveUsers(userRepository);
 
         for (User user : users) {
+            System.out.println(user.getId());
             if (user.getId() == id) {
                 users.remove(users.indexOf(user));
 
