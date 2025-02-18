@@ -18,7 +18,7 @@ public class TeamChatController {
         this.teamChatService = teamChatService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{teamId}")
     public ChatGroup getChat(@PathVariable Integer teamId) {
         return this.teamChatService.getChat(teamId);
     }

@@ -52,6 +52,12 @@ public class MessageController {
     @PostMapping(path = "/send")
     public @ResponseBody String postMessage(@RequestParam Integer userId, @RequestParam Integer chatGroupId,
             @RequestParam String text) throws Exception {
+        text = text.trim();
+
+        if (text.isEmpty()) {
+            throw new Exception("Message cannot be empty");
+        }
+
         Message message = new Message();
 
         message.setUserid(userId);
