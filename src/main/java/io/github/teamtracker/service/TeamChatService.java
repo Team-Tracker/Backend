@@ -23,6 +23,10 @@ public class TeamChatService {
     public ChatGroup getChat(Integer teamId) {
         TeamChat teamChat = this.teamChatRepository.findByTeamId(teamId);
 
+        if (teamChat == null) {
+            throw new RuntimeException("Team not found");
+        }
+
         ChatGroup chatGroup = this.chatGroupRepository.findById(teamChat.getChatGroupId()).orElse(null);
 
         return chatGroup;

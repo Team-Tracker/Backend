@@ -110,15 +110,13 @@ public class TeamService {
     }
 
     private Member newTeam(Integer teamId, Integer userId) {
-        this.teamRepository.findById(teamId).orElseThrow(() -> new TeamException("Team not found"));
-
         Member member = new Member(userId, teamId, "admin");
 
         return this.memberRepository.save(member);
     }
 
     private TeamChat newChat(Integer teamId) {
-        Integer chatGroupId = ChatHelper.createChatGroup(chatGroupRepository);
+        Integer chatGroupId = ChatHelper.createChatGroup(this.chatGroupRepository);
 
         TeamChat teamChat = new TeamChat(teamId, chatGroupId);
 
