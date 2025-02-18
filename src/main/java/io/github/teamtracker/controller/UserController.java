@@ -55,7 +55,7 @@ public class UserController {
 
         for (User user : users) {
             if (user.getId() == id) {
-                users.remove(user);
+                users.remove(users.indexOf(user));
 
                 break;
             }
