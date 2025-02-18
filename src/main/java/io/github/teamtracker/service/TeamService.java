@@ -72,13 +72,15 @@ public class TeamService {
 
     public void deleteTeam(Integer id) {
         this.teamRepository.deleteById(id);
+
+        this.deleteTeamMembers(id);
     }
 
     public Member addUserToTeam(Integer teamId, Integer userId) {
         this.teamRepository.findById(teamId).orElseThrow(() -> new TeamException("Team not found"));
 
         if (this.memberRepository.findByUserIdAndTeamId(userId, teamId) != null) {
-            throw new TeamException("User already in team");
+            new TeamException("User already in team");
         }
 
         Member member = new Member(userId, teamId, "member");
@@ -102,5 +104,13 @@ public class TeamService {
         Member member = new Member(userId, teamId, "admin");
 
         return this.memberRepository.save(member);
+    }
+
+    private void deleteTeamMembers(Integer teamId) {
+        Iterable<Member> members = this.memberRepository.findByTeamId(teamId);
+
+        for (Member member : members) {
+            this.memberRepository.delete(member);
+        }
     }
 }

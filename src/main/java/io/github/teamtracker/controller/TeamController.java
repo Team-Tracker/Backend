@@ -28,7 +28,7 @@ public class TeamController {
         return this.teamService.getAllTeams();
     }
 
-    @GetMapping("/teams")
+    @GetMapping("/teams/{userId}")
     public Iterable<Team> getTeams(@PathVariable Integer userId) {
         return this.teamService.getTeams(userId);
     }
@@ -48,7 +48,7 @@ public class TeamController {
         this.teamService.deleteTeam(id);
     }
 
-    @PostMapping("/{teamId}")
+    @PostMapping("/{teamId}/{userId}")
     public Member addUserToTeam(@PathVariable Integer teamId, @PathVariable Integer userId) {
         return this.teamService.addUserToTeam(teamId, userId);
     }
