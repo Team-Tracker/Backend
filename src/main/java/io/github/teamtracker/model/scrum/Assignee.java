@@ -13,8 +13,8 @@ public class Assignee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "user_id")
-    private Integer userId;
+    @Column(name = "member_id")
+    private Integer memberId;
 
     @Column(name = "task_id")
     private Integer taskId;
@@ -23,12 +23,12 @@ public class Assignee {
         return this.id;
     }
 
-    public Integer getUserId() {
-        return this.userId;
+    public Integer getMemberId() {
+        return this.memberId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setMemberId(Integer memberId) {
+        this.memberId = memberId;
     }
 
     public Integer getTaskId() {

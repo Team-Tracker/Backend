@@ -1,10 +1,6 @@
 package io.github.teamtracker.model.scrum;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Task {
@@ -17,11 +13,15 @@ public class Task {
 
     private String description;
 
-    @Column(name = "board_id")
+    @Column(name = "board_id", nullable = false)
     private Integer boardId;
 
-    @Column(name = "creator_id")
+    @Column(name = "creator_id", nullable = false)
     private Integer creatorId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "task_state", nullable = false)
+    private TaskState state;
 
     public Integer getId() {
         return this.id;
@@ -57,5 +57,13 @@ public class Task {
 
     public void setCreatorId(Integer creatorId) {
         this.creatorId = creatorId;
+    }
+
+    public TaskState getState() {
+        return state;
+    }
+
+    public void setState(TaskState state) {
+        this.state = state;
     }
 }
