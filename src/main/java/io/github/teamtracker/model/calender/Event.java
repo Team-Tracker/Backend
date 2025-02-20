@@ -25,11 +25,11 @@ public class Event {
     @Column(name = "event_date")
     private String eventDate;
 
-    @Column(name = "event_time")
-    private String eventTime;
+    @Column(name = "start_time")
+    private String startTime;
 
-    @Column(name = "event_duration")
-    private String eventDuration;
+    @Column(name = "end_time")
+    private String endTime;
 
     public Integer getId() {
         return this.id;
@@ -71,19 +71,19 @@ public class Event {
         this.eventDate = eventDate;
     }
 
-    public String getEventTime() {
-        return this.eventTime;
+    public String getStartTime() {
+        return this.startTime;
     }
 
-    public void setEventTime(String eventTime) {
-        this.eventTime = eventTime;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
-    public String getEventDuration() {
-        return this.eventDuration;
+    public String getEndTime() {
+        return this.endTime;
     }
 
-    public void setEventDuration(String eventDuration) {
-        this.eventDuration = eventDuration;
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 }

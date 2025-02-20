@@ -132,8 +132,8 @@ public class AdminController {
         event.setEventName("Meeting");
         event.setEventDescription("Team Tracker Meeting");
         event.setEventDate("2025-02-28");
-        event.setEventTime("12:00");
-        event.setEventDuration("1:00");
+        event.setStartTime("12:00");
+        event.setEndTime("1:00");
 
         this.calenderRepository.save(event);
 

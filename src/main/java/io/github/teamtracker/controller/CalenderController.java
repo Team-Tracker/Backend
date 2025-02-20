@@ -32,16 +32,16 @@ public class CalenderController {
 
     @PostMapping(path = "/create")
     public @ResponseBody Integer createEvent(@RequestParam Integer userId, @RequestParam String title,
-            @RequestParam String description, @RequestParam String date, @RequestParam String time,
-            @RequestParam String duration) {
+            @RequestParam String description, @RequestParam String date, @RequestParam String startTime,
+            @RequestParam String endTime) {
         Event event = new Event();
 
         event.setUserId(userId);
         event.setEventName(title);
         event.setEventDescription(description);
         event.setEventDate(date);
-        event.setEventTime(time);
-        event.setEventDuration(duration);
+        event.setStartTime(startTime);
+        event.setEndTime(endTime);
 
         this.calenderRepository.save(event);
 
@@ -50,15 +50,15 @@ public class CalenderController {
 
     @PostMapping(path = "/update")
     public @ResponseBody Integer updateEvent(@RequestParam Integer eventId, @RequestParam String title,
-            @RequestParam String description, @RequestParam String date, @RequestParam String time,
-            @RequestParam String duration) {
+            @RequestParam String description, @RequestParam String date, @RequestParam String startTime,
+            @RequestParam String endTime) {
         Event event = this.calenderRepository.findById(eventId).get();
 
         event.setEventName(title);
         event.setEventDescription(description);
         event.setEventDate(date);
-        event.setEventTime(time);
-        event.setEventDuration(duration);
+        event.setStartTime(startTime);
+        event.setEndTime(endTime);
 
         this.calenderRepository.save(event);
 
