@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,7 +50,7 @@ public class CalenderController {
         return event.getId();
     }
 
-    @PostMapping(path = "/update")
+    @PatchMapping(path = "/update")
     public @ResponseBody Integer updateEvent(@RequestParam Integer eventId, @RequestParam String title,
             @RequestParam String description, @RequestParam String date, @RequestParam String startTime,
             @RequestParam String endTime) {
