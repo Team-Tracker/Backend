@@ -7,6 +7,9 @@ import io.github.teamtracker.model.user.User;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
 
+    @Query(value = "SELECT * FROM user WHERE id = ?1", nativeQuery = true)
+    User one(Integer id);
+
     @Query(value = "SELECT * FROM user WHERE username = ?1", nativeQuery = true)
     User findByUsername(String username);
 

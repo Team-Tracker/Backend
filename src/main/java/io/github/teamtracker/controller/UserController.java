@@ -65,6 +65,16 @@ public class UserController {
     }
 
     /**
+     * Get a user from the database by ID.
+     * 
+     * @return the user with the given ID
+     */
+    @GetMapping(path = "/one")
+    public @ResponseBody User getOne(@RequestParam Integer id) {
+        return this.userRepository.one(id);
+    }
+
+    /**
      * Resolve the username by user ID.
      * 
      * @param id the ID of the user
