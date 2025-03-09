@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -109,9 +110,49 @@ public class UserController {
         return id;
     }
 
+    /**
+     * Check if a user exists in the database.
+     * 
+     * @param id the ID of the user
+     * @return true if the user exists, false otherwise
+     */
     @GetMapping(path = "/exists")
     public @ResponseBody Boolean getUser(@RequestParam Integer id) {
         return UserHelper.userExists(id, this.userRepository);
+    }
+
+    /**
+     * Change the details of a user in the database.
+     * 
+     * @param username  the username of the user
+     * @param firstName the first name of the user
+     * @param lastName  the last name of the user
+     * @param email     the email of the user
+     * @param phone     the phone number of the user
+     * @param password  the password of the user
+     * @return the ID of the new user
+     */
+    @PutMapping(path = "/update")
+    public @ResponseBody User changeDetails(@RequestParam Integer id, @RequestParam String firstName,
+            @RequestParam String lastName, @RequestParam String email, @RequestParam String phone) {
+        User user = this.userRepository.findById(id).get();
+
+        if (user == null) {
+            return null;
+        }
+
+        if (user.isDeleted()) {
+            return null;
+        }
+
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setEmail(email);
+        user.setPhone(phone);
+
+        this.userRepository.save(user);
+
+        return user;
     }
 
     /**

@@ -23,8 +23,6 @@ public class Message {
 
     private final String timestamp;
 
-    private boolean deleted;
-
     public Message() {
         this.timestamp = String.valueOf(System.currentTimeMillis());
     }
@@ -63,13 +61,5 @@ public class Message {
 
     public String getTimestamp() {
         return this.timestamp;
-    }
-
-    public boolean isDeleted() {
-        return this.deleted;
-    }
-
-    public void delete() {
-        this.deleted = true;
     }
 }

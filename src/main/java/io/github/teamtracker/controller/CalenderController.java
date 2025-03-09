@@ -2,8 +2,10 @@ package io.github.teamtracker.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -48,7 +50,7 @@ public class CalenderController {
         return event.getId();
     }
 
-    @PostMapping(path = "/update")
+    @PutMapping(path = "/update")
     public @ResponseBody Integer updateEvent(@RequestParam Integer eventId, @RequestParam String title,
             @RequestParam String description, @RequestParam String date, @RequestParam String startTime,
             @RequestParam String endTime) {
@@ -65,7 +67,7 @@ public class CalenderController {
         return event.getId();
     }
 
-    @PostMapping(path = "/delete")
+    @DeleteMapping(path = "/delete")
     public @ResponseBody Integer deleteEvent(@RequestParam Integer eventId) {
         this.calenderRepository.deleteById(eventId);
 
