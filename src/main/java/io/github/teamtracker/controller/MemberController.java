@@ -18,12 +18,12 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @GetMapping
+    @GetMapping(path = "/members")
     public Iterable<Member> getAllMembers() {
         return this.memberService.getAllMembers();
     }
 
-    @GetMapping("/members/{teamId}")
+    @GetMapping(path = "/members/{teamId}")
     public Iterable<Member> getTeams(@PathVariable Integer teamId) {
         return this.memberService.getMembers(teamId);
     }
