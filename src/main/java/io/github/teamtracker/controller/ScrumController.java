@@ -1,18 +1,8 @@
 package io.github.teamtracker.controller;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import io.github.teamtracker.exception.ScrumException;
-import io.github.teamtracker.model.scrum.Assignee;
-import io.github.teamtracker.model.scrum.Board;
-import io.github.teamtracker.model.scrum.Sprint;
-import io.github.teamtracker.model.scrum.Task;
+import io.github.teamtracker.model.scrum.*;
 import io.github.teamtracker.service.ScrumService;
 
 @RestController
@@ -42,6 +32,11 @@ public class ScrumController {
         return scrumService.createSprint(sprint);
     }
 
+    @PutMapping("/sprints/{id}")
+    public Sprint updateSprint(@PathVariable Integer id, @RequestBody Sprint sprint) {
+        return scrumService.updateSprint(id, sprint);
+    }
+
     @DeleteMapping("/sprints/{id}")
     public void deleteSprint(@PathVariable Integer id) {
         scrumService.deleteSprint(id);
@@ -62,6 +57,11 @@ public class ScrumController {
     @PostMapping("/boards")
     public Board createBoard(@RequestBody Board board) {
         return scrumService.createBoard(board);
+    }
+
+    @PutMapping("/boards/{id}")
+    public Board updateBoard(@PathVariable Integer id, @RequestBody Board board) {
+        return scrumService.updateBoard(id, board);
     }
 
     @DeleteMapping("/boards/{id}")
@@ -86,6 +86,16 @@ public class ScrumController {
         return scrumService.createTask(task);
     }
 
+    @PutMapping("/tasks/{id}")
+    public Task updateTask(@PathVariable Integer id, @RequestBody Task task) {
+        return scrumService.updateTask(id, task);
+    }
+
+    @PatchMapping("/tasks/{id}/state")
+    public Task updateTaskState(@PathVariable Integer id, @RequestBody TaskStateUpdateRequest request) {
+        return scrumService.updateTaskState(id, request.getState());
+    }
+
     @DeleteMapping("/tasks/{id}")
     public void deleteTask(@PathVariable Integer id) {
         scrumService.deleteTask(id);
@@ -106,6 +116,11 @@ public class ScrumController {
     @PostMapping("/assignees")
     public Assignee assignTask(@RequestBody Assignee assignee) {
         return scrumService.assignTask(assignee);
+    }
+
+    @PutMapping("/assignees/{id}")
+    public Assignee updateAssignee(@PathVariable Integer id, @RequestBody Assignee assignee) {
+        return scrumService.updateAssignee(id, assignee);
     }
 
     @DeleteMapping("/assignees/{id}")
